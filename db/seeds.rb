@@ -9,13 +9,18 @@
 # Users: do we need to add seed data for oauth gem?
 
 User.create([
-  { username: "Vicki", email: "vh@gmail.com", password: "hello") },
-  { username: "Jen", email: "jen@gmail.com", password: "wow") },
-  { username: "Tom", email: "tom@gmail.com", password: "Looooo") },
-  { username: "Kara", email: "kara@hotmail.com", password: "111") }
+  { username: "Vicki", email: "vh@gmail.com", password: "hello" },
+  { username: "Jen", email: "jen@gmail.com", password: "wow" },
+  { username: "Tom", email: "tom@gmail.com", password: "Looooo" },
+  { username: "Kara", email: "kara@hotmail.com", password: "111" }
 ])
 
-Hike.create(name: "Big Sur", state_id: 5, description: "Breathtaking mountains and coastal views", user_id: 1)
+Hike.create([
+  { name: "Big Sur Trails", state_id: 5, description: "Breathtaking mountains and coastal views", user_id: 1 }
+  { name: "Badlands National Park Trails", state_id: 43, description: "Its dramatic landscapes span layered rock formations, steep canyons and towering spires. Bison, bighorn sheep and prairie dogs inhabit its sprawling grasslands", user_id: 3 }
+  { name: "Joshua Tree National Park Trails", state_id: 5, description: "Characterized by rugged rock formations and stark desert landscapes. Named for the region’s twisted, bristled Joshua trees, the park straddles the cactus-dotted Colorado Desert and the Mojave Desert", user_id: 4 }
+  { name: "Stowe Pinnacle Trail", state_id: 48, description: "Located in Stowe, VT. Features a great forest setting and is rated as moderate", user_id: 1 }
+])
 
 states = State.create!([
   { state_name: 'Alaska', state_code: 'AK' },
@@ -73,6 +78,8 @@ states = State.create!([
 ])
 
 comments = Comment.create([
-  { :text => "Looks amazing!", :user_id => 2, :hike_id => 1},
-
+  { content: "Looks amazing!", user_id: 2, hike_id: 1 },
+  { content: "I love those whacky trees", user_id: 4, hike_id: 3 },
+  { content: "Just a beautiful hike in Southern California", user_id: 2, hike_id: 3 },
+  { content: "Can't wait to go there next spring!", user_id: 1, hike_id: 2 }
 ])
