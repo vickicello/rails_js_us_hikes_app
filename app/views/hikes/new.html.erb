@@ -1,0 +1,12 @@
+<h1>Add a new Hike: </h1>
+<%= form_for @hike do |f| %>
+  <%= f.label :name "Hike or Park Name:" %>
+  <%= f.text_field :name %><br>
+  <%= f.label :state_code, 'State', class: 'control-label' %>
+  <%= f.collection_select(:state_code, State.select(:state_name, :state_code),
+   :state_code, :state_name, {selected: 'CA'}, {class: 'form-control'}) %>
+  <%= f.label :description "Description:" %>
+  <%= f.text_field :description %><br>
+  
+  <%= f.submit "Add New Hike" %>
+<% end %>
