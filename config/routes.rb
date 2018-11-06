@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   delete '/signout', to: 'sessions#destroy'
   post '/sessions/signup', to: 'sessions#create'
   
+  resources :users
+  resources :hikes
+  resources :comments
 end
