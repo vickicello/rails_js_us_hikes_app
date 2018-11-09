@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 2018_11_06_015445) do
   end
 
   create_table "states", force: :cascade do |t|
-    t.string "name"
-    t.string "code"
+    t.string "state_name"
+    t.string "state_code"
   end
 
   create_table "users", force: :cascade do |t|
