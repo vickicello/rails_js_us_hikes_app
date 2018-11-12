@@ -4,11 +4,8 @@ class User < ApplicationRecord
   has_many :comments
   has_many :commented_hikes, through: :hikes
 
-  validates :username, presence: true
-  validates :username, length: { minimum: 6 }
-  validates :username, uniqueness: true
-  validates :email, presence: true
-  validates :email, uniqueness: true
+  validates :username, presence: true, uniquness: true, length: { minimum: 6 }
+  validates :email, presence: true, uniqueness: true, format: { with: /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}\z/i }
 
   def self.find_or_create_by_omniauth(auth_hash)
     oauth_email = auth_hash["info"]["email"]
