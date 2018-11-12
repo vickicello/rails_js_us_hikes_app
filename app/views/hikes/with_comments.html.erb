@@ -1,0 +1,8 @@
+<h2>Hikes with Comments:</h2>
+<ul class="list-group">
+  <% @hikes.each do |hike| %>
+    <li class="list-group-item"><%= link_to hike.name, hike_path(hike) %>
+      by: <%= hike.user.email %>
+    </li>
+  <% end %>
+</ul>
