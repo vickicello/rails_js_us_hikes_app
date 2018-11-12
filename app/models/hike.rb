@@ -5,6 +5,9 @@ class Hike < ApplicationRecord
   has_many :users, through: :comments
 
   validates :name, presence: true
+  validates :state_id, presence: true
 
-  # how to make sure trail is created with state always?
+  scope :with_comments, -> { where("comments_count > 0") }
+
 end
+

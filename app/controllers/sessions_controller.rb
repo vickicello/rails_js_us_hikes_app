@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     end
 
     session[:user_id] = @user.id
-    render '/'
+    render 'welcome/home'
   end
 
   def destroy
