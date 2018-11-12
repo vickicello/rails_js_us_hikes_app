@@ -1,23 +1,28 @@
 class SessionsController < ApplicationController
 
   def new
-    @user = User.new
   end
 
   # omniauth tutorial says I need to do name instead of username?
   def create 
-    @user = User.find_or_create_by(uid: auth['uid']) do |u|
-      u.username = auth['info']['username']
-      u.email = auth['info']['email']
-      u.image = auth['info']['image']
+    if auth_hash = request.env['omniauth.auth']
+      user = User.find_or_create_by_omniauth(auth_hash)
+      session[:user_id] = user.id
+      redirect_to user_path(user)
+    else
+      @user = User.find_by(email: params[:session][:email].downcase)
+      if @user && @user.authenticate(params[:session][:email].downcase)
+        session[:user_id] = @user.id
+        redirect_to user_path(@user)
+      else
+        flash[:danger] = 'Something went wrong. Please try again.'
+        render 'sessions/new'
+      end
     end
-
-    session[:user_id] = @user.id
-    render 'welcome/home'
   end
 
   def destroy
-    session.destroy
+    session.destroy :user_id
     redirect_to root_path
   end
 
