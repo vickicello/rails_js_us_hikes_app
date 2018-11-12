@@ -1,4 +1,7 @@
 class HikesController < ApplicationController
+  before_action :require_login
+  skip_before_action :require_login, only: [:index]
+  
   def index
     @hikes = Hike.all
   end
@@ -28,6 +31,10 @@ class HikesController < ApplicationController
   end
 
   private
+
+  def require_login
+    return head(:forbidden) unless session.include? :user_id
+  end
 
   def hike_params
     params.require(:hike).permit(:name, :state_id, :description, :user_id)
