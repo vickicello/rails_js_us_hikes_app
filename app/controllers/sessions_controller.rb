@@ -6,12 +6,12 @@ class SessionsController < ApplicationController
   # omniauth tutorial says I need to do name instead of username?
   def create 
     if auth_hash = request.env['omniauth.auth']
-      user = User.find_or_create_by_omniauth(auth_hash)
-      session[:user_id] = user.id
-      redirect_to user_path(user)
+      @user = User.find_or_create_by_omniauth(auth_hash)
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
     else
-      @user = User.find_by(email: params[:session][:email].downcase)
-      if @user && @user.authenticate(params[:session][:email].downcase)
+      @user = User.find_by(username: params[:username])
+      if @user && @user.authenticate(params[:password])
         session[:user_id] = @user.id
         redirect_to user_path(@user)
       else
