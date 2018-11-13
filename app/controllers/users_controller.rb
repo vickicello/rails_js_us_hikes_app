@@ -3,14 +3,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def show
-    if session[:user_id]
-      @user = User.find(params[:id])
-    else
-      redirect_to '/'
-    end
-  end
-
   def create
     @user = User.new(user_params)
     if @user.save
@@ -18,6 +10,15 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     else
       render 'new'
+    end
+  end
+
+  def show
+    if logged_in?
+      @user = User.find_by(id: params[:id])
+      redirect_to user_path(current_user) if @user != current_user
+    else
+      require_login
     end
   end
   

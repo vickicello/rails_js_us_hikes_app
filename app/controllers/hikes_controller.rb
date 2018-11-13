@@ -1,9 +1,10 @@
 class HikesController < ApplicationController
-  before_action :require_login
-  skip_before_action :require_login, only: [:index]
+  before_action :require_login, :current_user
+  skip_before_action :require_login, only: [:index, :show]
   
   def index
     @hikes = Hike.all
+    # do I need a way to only show hikes of current_user?
   end
 
   def show
@@ -15,9 +16,13 @@ class HikesController < ApplicationController
   end
 
   def create
-    @hike = Hike.create(hike_params)
+    @hike = Hike.new(hike_params)
+    if @hike.save
+    # @hike.creator = current_user
     redirect_to hike_path(@hike)
-    # should we have validations here? if @hike.save, etc
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -28,6 +33,11 @@ class HikesController < ApplicationController
     @hike = Hike.find(params[:id])
     @hike.update(hike_params)
     redirect_to hike_path(@hike)
+  end
+
+  def destroy
+    @hike.destroy
+    redirect_to hikes_path
   end
 
   private
