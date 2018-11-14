@@ -6,7 +6,7 @@ class Hike < ApplicationRecord
   accepts_nested_attributes_for :comments
   
   validates :name, presence: true
-  validates :state_id, presence: true
+  validates :state, presence: true
 
   scope :with_comments, -> { where("comments_count > 0") }
 
