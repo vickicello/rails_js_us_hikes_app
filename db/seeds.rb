@@ -16,10 +16,10 @@ User.create([
 ])
 
 Hike.create([
-  { name: "Big Sur Trails", state: "CA", description: "Breathtaking mountains and coastal views", user_id: 1 }
-  { name: "Badlands National Park Trails", state: "SD", description: "Its dramatic landscapes span layered rock formations, steep canyons and towering spires. Bison, bighorn sheep and prairie dogs inhabit its sprawling grasslands", user_id: 3 }
-  { name: "Joshua Tree National Park Trails", state: "CA", description: "Characterized by rugged rock formations and stark desert landscapes. Named for the region’s twisted, bristled Joshua trees, the park straddles the cactus-dotted Colorado Desert and the Mojave Desert", user_id: 4 }
-  { name: "Stowe Pinnacle Trail", state: "VT", description: "Located in Stowe, VT. Features a great forest setting and is rated as moderate", user_id: 1 }
+  { name: "Big Sur Trails", state: "CA", description: "Breathtaking mountains and coastal views", user_id: 1, completed: true },
+  { name: "Badlands National Park Trails", state: "SD", description: "Its dramatic landscapes span layered rock formations, steep canyons and towering spires. Bison, bighorn sheep and prairie dogs inhabit its sprawling grasslands", user_id: 3, completed: false },
+  { name: "Joshua Tree National Park Trails", state: "CA", description: "Characterized by rugged rock formations and stark desert landscapes. Named for the region’s twisted, bristled Joshua trees, the park straddles the cactus-dotted Colorado Desert and the Mojave Desert", user_id: 4, completed: false },
+  { name: "Stowe Pinnacle Trail", state: "VT", description: "Located in Stowe, VT. Features a great forest setting and is rated as moderate", user_id: 1, completed: true }
 ])
 
 comments = Comment.create([
