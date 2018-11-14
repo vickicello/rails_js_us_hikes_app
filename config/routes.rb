@@ -2,9 +2,11 @@ Rails.application.routes.draw do
 
   root 'welcome#home'
 
+  get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new', :as => :login
-  get '/logout', to: 'sessions#destroy'
-  post '/sessions/signup', to: 'sessions#create'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  
   get '/auth/facebook/callback', to: 'sessions#create'
   get 'hikes/with_comments', to: 'hikes#with_comments'
   

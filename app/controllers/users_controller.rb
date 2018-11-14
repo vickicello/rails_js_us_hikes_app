@@ -7,18 +7,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path(@user)
+      redirect_to hikes_path
     else
       render 'new'
-    end
-  end
-
-  def show
-    if logged_in?
-      @user = User.find_by(id: params[:id])
-      redirect_to user_path(current_user) if @user != current_user
-    else
-      require_login
     end
   end
   
