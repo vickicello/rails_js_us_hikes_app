@@ -8,7 +8,7 @@ class HikesController < ApplicationController
   end
 
   def show
-    @hike = Hike.find(params[:id])
+    @hike = Hike.find_by(id: params[:id])
   end
 
   def new
@@ -47,6 +47,6 @@ class HikesController < ApplicationController
   end
 
   def hike_params
-    params.require(:hike).permit(:name, :state_id, :description, :user_id)
+    params.require(:hike).permit(:name, :state, :description, :user_id)
   end
 end
