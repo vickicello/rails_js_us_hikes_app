@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   
-  resources :users
+  resources :users, only: [:new, :create]
   resources :hikes
   resources :comments
 end

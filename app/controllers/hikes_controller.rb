@@ -1,6 +1,6 @@
 class HikesController < ApplicationController
   before_action :require_login, :current_user
-  skip_before_action :require_login, only: [:index, :show]
+  skip_before_action :require_login, only: [:index]
   
   def index
     @hikes = Hike.all
