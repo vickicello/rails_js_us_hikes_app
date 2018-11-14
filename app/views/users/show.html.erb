@@ -1,11 +1,4 @@
-<h1>My Hikes</h1>
+<h1>Users Show Page</h1>
 
-<div class="wrapper">
-  <ul>
-    <% t.hikes.each do |h| %>
-      <p><%= h.name %></p>
-      <p><%= h.description %></p>
-    <% end %>
-  </ul>
-  <%= link_to "Create new hike", new_user_hike_path(@user), class:"button create_button" %>
-</div>
+
+<%= link_to "Create new hike", new_user_hike_path(@user), class:"button create_button" %>
