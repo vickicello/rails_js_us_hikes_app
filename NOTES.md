@@ -23,18 +23,19 @@ TODO
   -Sessions
   -Users
   -Hikes
+  -comments
 
-1.67) Seed the db
+<!-- 1.67) Seed the db -->
 
-2) user can check off/cross off hikes once they are created
-2.5) omniauth  can login with facebook (uid = the user's id on fb)
+<!-- 2) user can check off/cross off hikes once they are created
+2.5) omniauth  can login with facebook (uid = the user's id on fb) -->
 3) user can create, edit, view, and destroy the hikes on their list
 
   -create views 
 
   -create forms
 
-  -add all oauth info
+  <!-- -add all oauth info -->
 
   -refactor views with partials
 
@@ -44,6 +45,6 @@ TODO
 
 5) validation, and error messages using flash
 
-6) use bootstrap framework???
+6) use bootstrap framework??? - CDN
 
 7) dropdown states list in hike new view

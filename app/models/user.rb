@@ -8,9 +8,9 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}\z/i }
 
   def self.find_or_create_by_omniauth(auth_hash)
-    self.where(email: auth_hash["info"]["email"]).first_or_create do |user|
-      user.username = auth_hash.info.name
-      user.password = SecureRandom.hex
+    self.where(email: auth_hash["info"]["email"]).first_or_create do |u|
+      u.username = auth_hash.info.name
+      u.password = SecureRandom.hex
     end
   end  
   

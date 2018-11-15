@@ -7,26 +7,29 @@ class SessionsController < ApplicationController
   def create 
     if auth_hash = request.env['omniauth.auth']
       @user = User.find_or_create_by_omniauth(auth_hash)
-      session[:user_id] = @user.id
-      redirect_to user_path(@user)
+      login
     else
       @user = User.find_by(username: params[:username])
       if @user && @user.authenticate(params[:password])
-        session[:user_id] = @user.id
-        redirect_to user_path(@user)
+      login
       else
         flash.now[:danger] = 'Something went wrong. Please try again.'
-        render 'new'
+        redirect_to '/login'
       end
     end
   end
 
   def destroy
-    session.destroy :user_id
+    session.clear
     redirect_to root_path
   end
 
   private
+
+  def login
+    session[:user_id] = @user.id
+    redirect_to user_path(@user)
+  end
 
   def auth
     request.env['omniauth.auth']
