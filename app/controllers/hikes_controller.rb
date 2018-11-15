@@ -1,41 +1,69 @@
 class HikesController < ApplicationController
-  before_action :require_login, :current_user
+  before_action :require_login
   skip_before_action :require_login, only: [:index]
   
   def index
-    @hikes = Hike.all
-    # do I need a way to only show hikes of current_user?
+    if params[:user_id] && current_user.id == params[:user_id].to_i
+      @user = current_user
+      @hikes = @user.hikes
+    elsif params[:user_id]
+      flash[:alert] = "You are not authorized to view this page."
+      redirect_to hikes_path
+    else
+      @hikes = Hike.all
+    end
+  end
+
+  def new
+    if current_user.id == params[:user_id].to_i
+      @user = current_user
+      @hike = Hike.new(user_id: params[:user_id])
+    else 
+      flash[:alert] = "You are not authorized to create a hike on this user's page."
+      redirect_to hikes_path
+    end
+  end
+
+  def create
+    @hike = Hike.new(hike_params)
+    @user = User.find_by(id: params[:user_id])
+    if @hike.save
+      redirect_to hike_path(@hike)
+    else
+      render 'new'
+    end
   end
 
   def show
     @hike = Hike.find_by(id: params[:id])
   end
 
-  def new
-    @hike = Hike.new
-  end
-
-  def create
-    @hike = Hike.new(hike_params)
-    if @hike.save
-    # @hike.creator = current_user
-    redirect_to user_path(@user)
+  def edit
+    if current_user.id == params[:user_id].to_i
+      @user = current_user
+      @hike = @user.hikes.find_by(id: params[:id])
+      if @hike.nil?
+        flash[:alert] = "Hike not found."
+        redirect_to user_hikes_path(@user)
+      else
+        @hike.build(hike_params)
+      end
+    end
     else
-      render 'new'
+      flash[:alert] = "You are not authorized to edit another user's hike."
+      redirect_to hikes_path
     end
   end
 
-  def edit
-    @hike = Hike.find(params[:id])
-  end
-
   def update
-    @hike = Hike.find(params[:id])
+    @hike = Hike.find_by(id: params[:id])
+    @user = User.find_by(id: params[:user_id])
     @hike.update(hike_params)
     redirect_to hike_path(@hike)
   end
 
   def destroy
+    @hike = Hike.find_by(id: params[:id])
     @hike.destroy
     redirect_to hikes_path
   end
