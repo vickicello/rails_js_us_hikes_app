@@ -19,7 +19,7 @@ class HikesController < ApplicationController
     @hike = Hike.new(hike_params)
     if @hike.save
     # @hike.creator = current_user
-    redirect_to hike_path(@hike)
+    redirect_to user_path(@user)
     else
       render 'new'
     end

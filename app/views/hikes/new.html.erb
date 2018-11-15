@@ -1,10 +1,10 @@
 <h1>Add a new Hike: </h1>
 <div class="wrapper">
   <%= form_for @hike do |f| %>
-    <%= f.text_field :name, placeholder: "Hike or Park Name" %><br>
-    <%= f.select :state, placeholder: "State", options_for_select(us_states) %>
-    <%= f.text_field :description, placeholder: "Description" %><br />
-    <%= f.check_box :completed, {}, 1, 0 %>Trip Completed?<br />
+    <%= f.text_field :name, placeholder: "Hike or Park Name" %><br /><br />
+    <%= f.select :state, options_for_select(us_states) %><br /><br />
+    <%= f.text_field :description, placeholder: "Description" %><br /><br />
+    <%= f.check_box :completed, {}, 1, 0 %>Trip Completed?<br /><br />
     
     <%= f.submit "Add New Hike" %>
   <% end %>
