@@ -1,6 +1,5 @@
 class HikesController < ApplicationController
   before_action :require_login
-  skip_before_action :require_login, only: [:index]
   
   def index
     if params[:user_id] && current_user.id == params[:user_id].to_i
@@ -35,7 +34,7 @@ class HikesController < ApplicationController
   end
 
   def show
-    @hike = Hike.find_by(id: params[:id])
+    # @hike = Hike.find_by(id: params[:id])
   end
 
   def edit
@@ -48,7 +47,6 @@ class HikesController < ApplicationController
       else
         @hike.build(hike_params)
       end
-    end
     else
       flash[:alert] = "You are not authorized to edit another user's hike."
       redirect_to hikes_path
