@@ -2,3 +2,8 @@
 
 
 <%= link_to "Create new hike", new_hike_path %>
+
+<h3><%= @user.username %></h3> has commented on the following hikes:
+<% @user.hikes.each do |hike| %>
+  <%= link_to hike.name, hike_path(hike) %>
+<% end %>

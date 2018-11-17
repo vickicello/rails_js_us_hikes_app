@@ -2,11 +2,8 @@ class HikesController < ApplicationController
   before_action :require_login, only: [:new, :edit, :create, :update, :destroy]
   
   def index
-    if params[:user_id] && current_user.id == User.find_by(id: params[:user_id])
-      @hikes = current_user.hikes
-    else
-      @hikes = Hike.all
-    end
+    @hikes = Hike.all
+    @hikes = @hikes.where(user_id: params[:user_id]) if params[:user_id]
   end
 
   def new
@@ -24,6 +21,7 @@ class HikesController < ApplicationController
   end
 
   def show
+    @hike = Hike.find(params[:id])
   end
 
   def edit
