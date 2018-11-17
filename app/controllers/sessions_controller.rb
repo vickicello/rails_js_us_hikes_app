@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       if @user && @user.authenticate(params[:password])
       login
       else
-        flash.now[:danger] = 'Something went wrong. Please try again.'
+        flash.now.alert = "Email or password is invalid.  Please try again."
         redirect_to '/login'
       end
     end
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.clear
-    redirect_to root_path
+    redirect_to root_url, notice: "You are now logged out."
   end
 
   private

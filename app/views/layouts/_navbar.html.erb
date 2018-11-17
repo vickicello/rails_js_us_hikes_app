@@ -1,17 +1,25 @@
 <!-- navbar -->  
 <nav class="navbar navbar-expand-lg fixed-top ">  
-  <a class="navbar-brand" href="hikes/index">Home</a>
+  <a class="navbar-brand" href="welcome/home">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">  
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse " id="navbarSupportedContent">     
     <ul class="navbar-nav mr-4">
-      <li class="nav-item">
-        <a class="nav-link" data-value="My Hikes" href="/hikes/show">My Hikes</a>
-      </li>  
-      <li class="nav-item">
-        <a class="nav-link " data-value="Logout" href="/logout">Logout</a>    
-      </li> 
+     <% if current_user %>
+        <li class="nav-item">
+          <h5>Logged in as <%= current_user.username %></h5>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-value="My Hikes" href="/hikes/index">My Hikes</a>
+        </li>  
+        <li class="nav-item">
+          <a class="nav-link " data-value="Logout" href="/logout">Logout</a>    
+        </li> 
+      <% else %>
+        <%= link_to "Sign Up", signup_path %> or
+        <%= link_to "Login", login_path %>
+      <% end %>
     </ul> 
   </div>
 </nav>

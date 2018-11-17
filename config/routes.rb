@@ -2,19 +2,18 @@ Rails.application.routes.draw do
 
   root 'welcome#home'
 
-  get '/signup', to: 'users#new'
-  get '/login', to: 'sessions#new', :as => :login
-  post '/login', to: 'sessions#create'
-  get '/logout', to: 'sessions#destroy'
-  
+  get '/signup', to: 'users#new', as: 'signup'
+  get '/login', to: 'sessions#new', as: 'login'
+  get '/logout', to: 'sessions#destroy', as: 'logout'
   get '/auth/facebook/callback', to: 'sessions#create'
-  get 'hikes/with_comments', to: 'hikes#with_comments'
+
+  resources :users
+  resources :sessions
+  resources :hikes
   
   resources :hikes do
-    resources :comments
+    resources :comments, only: [:new, :edit]
   end
-  
-  resources :users
-  resources :hikes
-  resources :comments
+
+  get 'hikes/with_comments', to: 'hikes#with_comments'
 end
