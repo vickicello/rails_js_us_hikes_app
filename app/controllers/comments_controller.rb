@@ -4,9 +4,9 @@ class CommentsController < ApplicationController
   def new
     if Hike.exists?(params[:hike_id])
       @hike = Hike.find_by(id: params[:hike_id])
-      @comment = @hike.comments.build(user_id: current_user.id)
+      @comment = current_user.comments.build(params[:comment])
     else
-      redirect_to hikes_path
+      redirect_to hike_path
     end
   end
 
