@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :hikes
   
   resources :hikes do
-    resources :comments, only: [:new, :edit]
+    resources :comments
   end
 
   get 'hikes/with_comments', to: 'hikes#with_comments'
