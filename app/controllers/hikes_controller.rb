@@ -1,34 +1,38 @@
 class HikesController < ApplicationController
-  before_action :require_login, only: [:new, :edit, :create, :update, :destroy]
+  before_action :require_login, except: :index
   
   def index
-    @hikes = current_user.hikes.all
+    @hikes = Hike.all
   end
 
   def new
-    @hike = current_user.hikes.new
+    @user = User.find(params[:user_id])
+    @hike = Hike.new
   end
 
   def create
-    @hike = current_user.hikes.new(hike_params)
+    @user = User.find(params[:user_id])
+    @hike = Hike.new(hike_params)
     if @hike.save
-      redirect_to hike_path(@hike)
-      # redirect_to @hike ???
+      redirect_to hike_path(@hike) #I want this to go to hike show page
     else
       render 'new'
     end
   end
 
   def show
-    @hikes = current_user.find_by(user_id: params[:user_id]).hikes.all
+    @user = User.find(params[:user_id])
+    @hike = Hike.find_by(id: params[:id])
   end
 
   def edit
-    @hike = Hike.find(params[:id])
+    @user = User.find(params[:user_id])
+    @hike = Hike.find_by(id: params[:id])
   end
 
   def update
-    @hike = Hike.find(params[:id])
+    @user = User.find(params[:user_id])
+    @hike = Hike.find_by(id: params[:id])
     if @hike.update(hike_params)
       redirect_to hike_path(@hike)
       # redirect_to @hike ?
@@ -38,9 +42,9 @@ class HikesController < ApplicationController
   end
 
   def destroy
-    @hike = Hike.find(params[:id])
+    @hike = Hike.find_by(id: params[:id])
     @hike.destroy
-    redirect_to hike_path
+    redirect_to hikes_path
   end
 
   private
