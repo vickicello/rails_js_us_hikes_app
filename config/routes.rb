@@ -6,16 +6,16 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new', as: 'login'
   get '/logout', to: 'sessions#destroy', as: 'logout'
   get '/auth/facebook/callback', to: 'sessions#create'
-
-  resources :users do
-    resources :hikes
-  end
-
-  resources :sessions
-  
-  resources :hikes do
-    resources :comments, shallow: true
-  end
-
   get 'hikes/with_comments', to: 'hikes#with_comments'
+
+  resources :sessions, only: [:create] #for the bcrypt signup
+  resources :hikes, only: [:show, :edit, :update, :destroy]
+
+  resources :users, only: [:new, :show, :create] do
+    resources :hikes, only: [:index, :new, :create]
+  end
+
+  # resources :hikes do
+  #   resources :comments, shallow: true
+  # end
 end
