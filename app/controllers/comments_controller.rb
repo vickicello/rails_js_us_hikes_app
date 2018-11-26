@@ -3,14 +3,16 @@ class CommentsController < ApplicationController
 
   def new
     if Hike.exists?(params[:hike_id])
+      @user = current_user
       @hike = Hike.find_by(id: params[:hike_id])
-      @comment = current_user.comments.build(params[:comment])
+      @comment = Comment.new
     else
       redirect_to hike_path
     end
   end
 
   def create
+    binding.pry
     comment = Comment.new(comment_params)
     if comment.save
       redirect_to hike_path(comment.hike)

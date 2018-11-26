@@ -14,15 +14,16 @@ class HikesController < ApplicationController
     @user = User.find(params[:user_id])
     @hike = Hike.new(hike_params)
     if @hike.save
-      redirect_to hike_path(@hike) #I want this to go to hike show page
+      redirect_to user_hike_path(@hike) #I want this to go to hike show page
     else
       render 'new'
     end
   end
 
   def show
-    @user = User.find(params[:user_id])
-    @hike = Hike.find_by(id: params[:id])
+    @user = current_user
+    @hike = Hike.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit
@@ -42,7 +43,7 @@ class HikesController < ApplicationController
   end
 
   def destroy
-    @hike = Hike.find_by(id: params[:id])
+    @hike = Hike.find_by(id: params[:user_id])
     @hike.destroy
     redirect_to hikes_path
   end

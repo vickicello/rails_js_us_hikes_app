@@ -12,10 +12,8 @@ Rails.application.routes.draw do
   resources :hikes, only: [:show, :edit, :update, :destroy]
 
   resources :users, only: [:new, :create, :show] do
-    resources :hikes, only: [:index, :new, :create]
+    resources :hikes, only: [:index, :new, :create, :show]
   end
 
-  # resources :hikes do
-  #   resources :comments, shallow: true
-  # end
+ resources :comments
 end
