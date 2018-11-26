@@ -2,7 +2,7 @@ class Hike < ApplicationRecord
   belongs_to :user
   has_many :comments
   has_many :users, through: :comments
-  accepts_nested_attributes_for :comments
+  # accepts_nested_attributes_for :comments
   
   validates :name, presence: true
   validates :state, presence: true

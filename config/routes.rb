@@ -7,12 +7,14 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy', as: 'logout'
   get '/auth/facebook/callback', to: 'sessions#create'
 
-  resources :users
+  resources :users do
+    resources :hikes
+  end
+
   resources :sessions
-  resources :hikes
   
   resources :hikes do
-    resources :comments
+    resources :comments, shallow: true
   end
 
   get 'hikes/with_comments', to: 'hikes#with_comments'
