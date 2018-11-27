@@ -23,7 +23,7 @@ class HikesController < ApplicationController
   def show
     @user = current_user
     @hike = Hike.find(params[:id])
-    @comment = Comment.new
+    @comment = Comment.new(:hike => @hike)
   end
 
   def edit
