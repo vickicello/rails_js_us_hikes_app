@@ -12,18 +12,21 @@ class CommentsController < ApplicationController
   end
 
   def create
-    comment = Comment.new(comment_params)
-    if comment.save
-      redirect_to hike_path(comment.hike)
+    @comment = Comment.new(comment_params)
+    if @comment.save
+      flash[:notice] = "Comment was successfully created."
+      redirect_to(@comment.hike)
+      # redirect_to hike_path(@comment.hike)
     else
-      render 'new'
+      flash[:notice] = "Error creating comment. Please try again."
+      redirect_to(@comment.hike)
     end
   end
 
   def edit
     @hike = Hike.find_by(id: params[:hike_id])
     if @hike.nil?
-      redirect_to hikes_path
+      redirect_to hike_path(@hike)
     else
       @comment = @hike.comments.find_by(id: params[:id])
       redirect_to hike_path(@hike) if @comment.exists? || flash[:alert] = "Sorry, that comment doesn't exist."
@@ -32,13 +35,16 @@ class CommentsController < ApplicationController
 
   def update
     @comment.update(comment_params)
-    redirect_to hike_path(@comment.hike)
+    redirect_to(@comment.hike)
+    # redirect_to hike_path(@comment.hike)
   end
 
   def destroy
-    @comment.destroy 
+    @comment = Comment.find(params[:id])
+    @comment.destroy
     flash[:alert] = "Your comment has been deleted."
-    redirect_to hike_path(@comment.hike)
+    redirect_to(@comment.hike)
+    # redirect_to hike_path(@comment.hike)
   end
 
   private

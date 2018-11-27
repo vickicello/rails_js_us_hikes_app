@@ -1,6 +1,6 @@
 <h1>Users Show Page</h1>
 
-<%= link_to "Create new hike", new_user_hike_path %>
+<%= link_to "Create new hike", new_user_hike_path(@user) %>
 
 <h3><%= @user.username %></h3> has commented on the following hikes:
 <% @user.hikes.each do |hike| %>

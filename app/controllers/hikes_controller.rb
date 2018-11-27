@@ -28,7 +28,7 @@ class HikesController < ApplicationController
 
   def edit
     @user = User.find(params[:user_id])
-    @hike = Hike.find_by(id: params[:id])
+    @hike = Hike.find(params[:id])
   end
 
   def update
@@ -43,9 +43,9 @@ class HikesController < ApplicationController
   end
 
   def destroy
-    @hike = Hike.find_by(id: params[:user_id])
+    @hike = Hike.find(params[:id])
     @hike.destroy
-    redirect_to hikes_path
+    redirect_to user_hikes_path(@user)
   end
 
   private
