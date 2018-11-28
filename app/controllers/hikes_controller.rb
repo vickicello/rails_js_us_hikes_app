@@ -3,6 +3,7 @@ class HikesController < ApplicationController
   
   def index
     @hikes = Hike.all
+    @books = @books.where(completed: params[:completed]) if params[:completed]
   end
 
   def new
@@ -27,7 +28,7 @@ class HikesController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:user_id])
+    # @user = User.find(params[:user_id])
     @hike = Hike.find(params[:id])
   end
 
@@ -36,7 +37,6 @@ class HikesController < ApplicationController
     @hike = Hike.find(params[:id])
     if @hike.update(hike_params)
       redirect_to hike_path(@hike)
-      # redirect_to @hike ?
     else
       render "edit"
     end
