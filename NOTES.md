@@ -39,12 +39,28 @@ TODO
 
   -refactor views with partials
 
-  -refactor controllers  with helpers if needed
-
-4) users can see other users' hike show page and leave a comment(?)
+<!-- 4) users can see other users' hike show page and leave a comment(?) -->
 
 5) validation, and error messages using flash
 
-6) use bootstrap framework??? - CDN
+<!-- 6) use bootstrap framework??? - CDN -->
 
-7) dropdown states list in hike new view
+<!-- 7) dropdown states list in hike new view -->
+
+11/27/18
+
+-need to work out 'My Hikes' Button to show users/user_id/hikes/index in navbar
+
+-need to show error messages (not showing at the moment)
+
+-create new hike form isn't working
+
+-weird comment stuff from active record at the bottom of hike show page
+
+-need to create scope info in view somewhere
+
+-figure out if we want to keep 'with comments' scope
+
+-add username to comments somehow
+
+-figure out which actions and routes are needed for comments
