@@ -18,12 +18,12 @@ TODO
     + state name and 2 letter code
     + f.select dropdown box in form -->
 
-1.5) Controllers
+<!-- 1.5) Controllers
   <!-- -Welcome -->
-  -Sessions
+  <!-- -Sessions
   -Users
   -Hikes
-  -comments
+  -comments  -->
 
 <!-- 1.67) Seed the db -->
 
@@ -32,11 +32,8 @@ TODO
 3) user can create, edit, view, and destroy the hikes on their list
 
   -create views 
-
   -create forms
-
   <!-- -add all oauth info -->
-
   -refactor views with partials
 
 <!-- 4) users can see other users' hike show page and leave a comment(?) -->
@@ -63,4 +60,4 @@ TODO
 
 -add username to comments somehow
 
--figure out which actions and routes are needed for comments
+-figure out which actions and routes are needed for comments - create and destroy
