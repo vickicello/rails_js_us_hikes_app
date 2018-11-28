@@ -33,7 +33,7 @@ class HikesController < ApplicationController
 
   def update
     @user = User.find(params[:user_id])
-    @hike = Hike.find_by(id: params[:id])
+    @hike = Hike.find(params[:id])
     if @hike.update(hike_params)
       redirect_to hike_path(@hike)
       # redirect_to @hike ?

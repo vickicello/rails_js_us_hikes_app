@@ -3,11 +3,13 @@
   <h2><%= @hike.name %> - <%= @hike.state %></h2>
   <p><%= @hike.description %></p><br />
 
-<%= form_for @comment do |f| %>
+<%= form_for [@hike, @comment] do |f| %>
   <%= f.hidden_field :user_id, :value => @user.id %>
   <%= f.hidden_field :hike_id, :value => @hike.id %>
   <%= f.text_field :content %>
   <%= f.submit "Submit comment" %>
 <% end %><br />
 <h2>Comments:</h2>
-<p><%#= @comment.content %> by: <%#= @comment.user %></p><br />
+<%= @hike.comments.each do |c| %>
+  <p><%= c.content %></p><br />
+<% end %>
