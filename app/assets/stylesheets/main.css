@@ -14,8 +14,12 @@
 
 .nav-item h5 {
   color: #1e380e;
-  padding-top: 8px;
-  padding-right: 20px;
+  padding-top: 15px; 
+  padding-right: 25px;
+}
+
+.nav-item a {
+  padding-right: 15px;
 }
 
 .nav-link:hover { 
