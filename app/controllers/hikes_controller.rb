@@ -3,7 +3,7 @@ class HikesController < ApplicationController
   
   def index
     @hikes = Hike.all
-    @books = @books.where(completed: params[:completed]) if params[:completed]
+    @hikes = @hikes.where(completed: params[:completed]) if params[:completed]
   end
 
   def new

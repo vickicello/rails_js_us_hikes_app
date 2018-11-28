@@ -29,16 +29,15 @@ TODO
 
 <!-- 2) user can check off/cross off hikes once they are created
 2.5) omniauth  can login with facebook (uid = the user's id on fb) -->
-3) user can create, edit, view, and destroy the hikes on their list
+<!-- 3) user can create, edit, view, and destroy the hikes on their list
 
   -create views 
-  -create forms
+  -create forms -->
   <!-- -add all oauth info -->
-  -refactor views with partials
 
 <!-- 4) users can see other users' hike show page and leave a comment(?) -->
 
-5) validation, and error messages using flash
+<!-- 5) validation, and error messages using flash -->
 
 <!-- 6) use bootstrap framework??? - CDN -->
 
@@ -46,18 +45,16 @@ TODO
 
 11/27/18
 
--need to work out 'My Hikes' Button to show users/user_id/hikes/index in navbar
-
 -need to show error messages (not showing at the moment)
 
 -create new hike form isn't working
 
--weird comment stuff from active record at the bottom of hike show page
-
--need to create scope info in view somewhere
-
--figure out if we want to keep 'with comments' scope
+-need to create scope info in view somewhere (finish)
 
 -add username to comments somehow
 
--figure out which actions and routes are needed for comments - create and destroy
+-make comments partials (see rails guide)
+
+-signup not working?
+
+-finish up CRUD functionality with user.hikes, comments etc
