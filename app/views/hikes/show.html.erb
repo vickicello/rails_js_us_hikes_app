@@ -12,7 +12,7 @@
 <% end %><br />
 
 <h2>Comments:</h2>
-<%= @hike.comments.each do |c| %>
+<% @hike.comments.each do |c| %>
   <p><%= c.content %></p><br />
 <% end %>
 
