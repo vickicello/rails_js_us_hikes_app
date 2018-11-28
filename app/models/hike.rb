@@ -11,6 +11,5 @@ class Hike < ApplicationRecord
   def self.completed
     where(completed: true)
   end
-  # scope :with_comments, -> { where("comments_count > 0") }
 end
 
