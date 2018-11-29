@@ -7,19 +7,17 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_hikes(@user), notice: "Thank you for signing up!"
+      flash[:message] = "Thank you for signing up!"
+      redirect_to user_hikes(@user)
     else
+      flash[:message] = "Sign up was unsuccessful, please try again."
       render 'new'
     end
   end
 
   def show
-    if logged_in?
-      @user = User.find_by(params[:id])
-      redirect_to user_path(@user)
-    else
-      require_login
-    end
+    require_login
+    @user = User.find(params[:id])
   end
   
   private
