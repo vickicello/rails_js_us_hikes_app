@@ -1,5 +1,5 @@
 class HikesController < ApplicationController
-  before_action :require_login, except: :index
+  before_action :require_login, except: [:index, :show]
   
   def index
     @hikes = Hike.all
@@ -7,15 +7,17 @@ class HikesController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
+    # @user = User.find(params[:user_id])
     @hike = Hike.new
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @hike = @user.hikes.create(hike_params)
+    # @user = User.find(params[:user_id])
+    @user = current_user
+    @hike = current_user.hikes.build(hike_params)
     if @hike.save
-      redirect_to user_hikes_path(@user.hikes) #I want this to go to hike show page
+      redirect_to user_hike_path(current_user.hike)
+      # redirect_to user_hikes_path(@user.hikes) #I want this to go to hike show page
     else
       render 'new'
     end
@@ -23,21 +25,27 @@ class HikesController < ApplicationController
 
   def show
     @user = current_user
-    @hike = Hike.find(params[:id])
+    @hike ||= Hike.find(params[:id])
     @comment = Comment.new(:hike => @hike)
   end
 
   def edit
-    # @user = User.find(params[:user_id])
     @hike = Hike.find(params[:id])
+    if current_user.id == @hike.user_id
+    else
+      flash[:message] = "The hike can only be edited by the user that created it."
+      redirect_to hike_path(@hike)
+    end
   end
 
   def update
-    @user = User.find(params[:user_id])
     @hike = Hike.find(params[:id])
-    if @hike.update(hike_params)
+    if current_user.id == @hike.user_id
+      @hike.update(hike_params)
       redirect_to hike_path(@hike)
+    end
     else
+      flash[:message] = "Changes failed to save, please try again."
       render "edit"
     end
   end
