@@ -1,7 +1,7 @@
 class Hike < ApplicationRecord
   belongs_to :user
   has_many :comments, :dependent => :destroy
-  has_many :users, through: :comments
+  has_many :commentors, :class_name => "User", through: :comments
   
   validates :name, presence: true
   validates :state, presence: true
