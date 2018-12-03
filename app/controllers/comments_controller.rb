@@ -1,32 +1,22 @@
 class CommentsController < ApplicationController
   before_action :require_login
 
-  # def new
-  #   if Hike.exists?(params[:hike_id])
-  #     @user = current_user
-  #     @hike = Hike.find_by(id: params[:hike_id])
-  #     @comment = Comment.new
-  #   else
-  #     redirect_to hike_path
-  #   end
-  # end
-
   def create
     @user = current_user
     @hike = Hike.find(params[:hike_id])
     @comment = @hike.comments.create(comment_params)
     if @comment.save
-      redirect_to hike_path(@hike), notice: "Comment was successfully created."
+      redirect_to hike_path(@hike), success: "Comment was successfully created."
     else
-      redirect_to hike_path(@hike), notice: "Error creating comment. Please try again."
-
+      redirect_to hike_path(@hike), danger: "Error creating comment. Please try again."
     end
   end
 
   def destroy
+    @hike = Hike.find(params[:hike_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to(@comment.hike), info: "Your comment has been deleted."
+    redirect_to hike_path(@comment.hike), info: "Your comment has been deleted."
     # redirect_to hike_path(@comment.hike)
   end
 
