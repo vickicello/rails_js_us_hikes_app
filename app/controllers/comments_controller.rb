@@ -12,13 +12,12 @@ class CommentsController < ApplicationController
   # end
 
   def create
-    @user = User.find(params[:user_id])
+    @user = current_user
     @hike = Hike.find(params[:hike_id])
-    @comment = hike.comments.create(comment_params)
+    @comment = @hike.comments.create(comment_params)
     if @comment.save
       flash[:notice] = "Comment was successfully created."
       redirect_to hike_path(@hike)
-      # redirect_to hike_path(@comment.hike)
     else
       flash[:notice] = "Error creating comment. Please try again."
       redirect_to hike_path(@hike)

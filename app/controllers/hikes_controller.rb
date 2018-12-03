@@ -16,7 +16,7 @@ class HikesController < ApplicationController
     @user = current_user
     @hike = current_user.hikes.build(hike_params)
     if @hike.save
-      redirect_to user_hike_path(current_user.hike)
+      redirect_to user_hikes_path(current_user.hikes)
       # redirect_to user_hikes_path(@user.hikes) #I want this to go to hike show page
     else
       render 'new'
@@ -43,7 +43,6 @@ class HikesController < ApplicationController
     if current_user.id == @hike.user_id
       @hike.update(hike_params)
       redirect_to hike_path(@hike)
-    end
     else
       flash[:message] = "Changes failed to save, please try again."
       render "edit"
@@ -53,7 +52,7 @@ class HikesController < ApplicationController
   def destroy
     @hike = Hike.find(params[:id])
     @hike.destroy
-    redirect_to user_path(@user)
+    redirect_to user_hikes_path(@user)
   end
 
   private
