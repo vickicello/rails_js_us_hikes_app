@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show] do
     resources :hikes, only: [:index, :new, :create, :show, :update]
   end
-
-  resources :comments, only: [:destroy]
   
   resources :hikes, only: [:show, :edit, :update, :destroy] do
     resources :comments

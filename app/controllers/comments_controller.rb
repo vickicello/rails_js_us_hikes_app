@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     if current_user.id == @comment.user_id
       @comment.destroy
-      redirect_to hike_comment_path(@comment.hike), info: "Your comment has been deleted."
+      redirect_to hike_path(@hike), info: "Your comment has been deleted."
     else
       redirect_to hike_path(@hike), warning: "You can't delete comments that you didn't write."
     end
