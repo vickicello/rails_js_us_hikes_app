@@ -15,9 +15,12 @@ class CommentsController < ApplicationController
   def destroy
     @hike = Hike.find(params[:hike_id])
     @comment = Comment.find(params[:id])
-    @comment.destroy
-    redirect_to hike_path(@comment.hike), info: "Your comment has been deleted."
-    # redirect_to hike_path(@comment.hike)
+    if current_user.id == @comment.user_id
+      @comment.destroy
+      redirect_to hike_comment_path(@comment.hike), info: "Your comment has been deleted."
+    else
+      redirect_to hike_path(@hike), warning: "You can't delete comments that you didn't write."
+    end
   end
 
   private

@@ -90,3 +90,10 @@ body {
     padding-top: 0px;
   }
 }
+
+/* <---- comment style ---->*/
+
+.comment {
+  border: 1px solid green;
+  padding: 10px;
+}

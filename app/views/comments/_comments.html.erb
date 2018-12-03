@@ -1,0 +1,5 @@
+<div class="comment">
+  <% @hike.comments.each do |c| %>
+    <p><strong><%= c.content %></strong><br />by: <%= c.commentor.username %><%= button_to "Delete Comment", {:controller => :comments, :action => 'destroy', :id => c.id}, :method => :delete %></p><br />
+  <% end %>
+</div>

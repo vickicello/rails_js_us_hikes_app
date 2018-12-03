@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:message] = "Thank you for signing up!"
-      redirect_to user_hikes(@user)
+      redirect_to user_hikes_url(@user)
     else
       flash[:message] = "Sign up was unsuccessful, please try again."
       render 'new'
