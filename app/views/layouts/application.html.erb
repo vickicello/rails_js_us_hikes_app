@@ -12,7 +12,10 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
   </head>
   <body>
-    <%= render 'layouts/navbar' %>  
-    <%= yield %>
+    <%= render 'layouts/navbar' %> 
+      <div class='col-md-8 col-md-offset-2'> 
+        <%= render 'layouts/flash_messages' %>
+        <%= yield %>
+      </div>
   </body>
 </html>

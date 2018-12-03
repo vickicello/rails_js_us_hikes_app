@@ -16,19 +16,17 @@ class CommentsController < ApplicationController
     @hike = Hike.find(params[:hike_id])
     @comment = @hike.comments.create(comment_params)
     if @comment.save
-      flash[:notice] = "Comment was successfully created."
-      redirect_to hike_path(@hike)
+      redirect_to hike_path(@hike), notice: "Comment was successfully created."
     else
-      flash[:notice] = "Error creating comment. Please try again."
-      redirect_to hike_path(@hike)
+      redirect_to hike_path(@hike), notice: "Error creating comment. Please try again."
+
     end
   end
 
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    flash[:alert] = "Your comment has been deleted."
-    redirect_to(@comment.hike)
+    redirect_to(@comment.hike), info: "Your comment has been deleted."
     # redirect_to hike_path(@comment.hike)
   end
 

@@ -16,7 +16,7 @@ class HikesController < ApplicationController
     @user = current_user
     @hike = current_user.hikes.build(hike_params)
     if @hike.save
-      redirect_to user_hikes_path(current_user.hikes)
+      redirect_to user_hikes_path(current_user.hikes), success: "Hike succesfully saved."
       # redirect_to user_hikes_path(@user.hikes) #I want this to go to hike show page
     else
       render 'new'
@@ -33,8 +33,8 @@ class HikesController < ApplicationController
     @hike = Hike.find(params[:id])
     if current_user.id == @hike.user_id
     else
-      flash[:message] = "The hike can only be edited by the user that created it."
-      redirect_to hike_path(@hike)
+      redirect_to hike_path(@hike), warning: "Hike can only be edited by the user that created it."
+
     end
   end
 
@@ -42,17 +42,17 @@ class HikesController < ApplicationController
     @hike = Hike.find(params[:id])
     if current_user.id == @hike.user_id
       @hike.update(hike_params)
-      redirect_to hike_path(@hike)
+      redirect_to hike_path(@hike), success: "Hike has been updated."
     else
-      flash[:message] = "Changes failed to save, please try again."
-      render "edit"
+      redirect_to edit_hike_path(@hike), warning: "Changes failed to save, please try again."
     end
   end
 
   def destroy
+    @user = current_user
     @hike = Hike.find(params[:id])
     @hike.destroy
-    redirect_to user_hikes_path(@user)
+    redirect_to user_hikes_path(@user), info: "Hike has been deleted."
   end
 
   private
