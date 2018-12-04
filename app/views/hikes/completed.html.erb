@@ -2,6 +2,6 @@
 <br />
   <% if @completed_hikes %>
     <ul>
-      <li><%= link_to @completed_hike.name, @completed_hike.state, @completed_hike.description %></li>
+      <li><%= link_to hike_path(@completed_hike.id) %></li>
     </ul>
   <% end %>

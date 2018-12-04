@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    redirect_to root_path unless logged_in?, warning: "You must be logged in to view that page."
+    if !logged_in?
+      redirect_to root_url, warning: "You must be logged in to view that page."
+    end
   end
 end

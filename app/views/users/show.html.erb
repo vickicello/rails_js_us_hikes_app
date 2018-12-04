@@ -6,3 +6,5 @@
 <ul><% @user.hikes.each do |hike| %>
   <li><%= link_to hike.name, hike_path(hike) %></li>
 <% end %></ul>
+
+<h3>Click <%= link_to('here', '/hikes/completed') %> to see your completed hikes!</h3>

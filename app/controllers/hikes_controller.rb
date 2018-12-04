@@ -1,22 +1,20 @@
 class HikesController < ApplicationController
-  before_action :require_login, except: [:index, :show]
+  before_action :require_login, except: [:index]
   
   def index
     @hikes = Hike.all
   end
 
-  def complete
+  def completed
     @completed_hikes = Hike.completed
-    render 'complete'
+    render 'completed'
   end
 
   def new
-    # @user = User.find(params[:user_id])
     @hike = Hike.new
   end
 
   def create
-    # @user = User.find(params[:user_id])
     @user = current_user
     @hike = current_user.hikes.build(hike_params)
     if @hike.save
@@ -63,5 +61,4 @@ class HikesController < ApplicationController
   def hike_params
     params.require(:hike).permit(:name, :state, :description, :user_id, :completed)
   end
-  
 end
