@@ -11,5 +11,6 @@ class Hike < ApplicationRecord
   def self.completed
     where(completed: true)
   end
+
 end
 

@@ -3,7 +3,11 @@ class HikesController < ApplicationController
   
   def index
     @hikes = Hike.all
-    @hikes = @hikes.where(completed: params[:completed]) if params[:completed]
+  end
+
+  def complete
+    @hikes = Hike.completed
+    render 'complete'
   end
 
   def new

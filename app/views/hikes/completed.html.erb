@@ -1,0 +1,7 @@
+<h1> Completed Hikes:</h1>
+<br />
+  <% if @hikes %>
+    <ul>
+      <li><%= link_to @hike.name, @hike.state, @hike.description %></li>
+    </ul>
+  <% end %>
