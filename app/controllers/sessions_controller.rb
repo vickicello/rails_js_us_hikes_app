@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
   def new
   end
 
-  # omniauth tutorial says I need to do name instead of username?
   def create 
     if auth_hash = request.env['omniauth.auth']
       @user = User.find_or_create_by_omniauth(auth_hash)
@@ -13,15 +12,14 @@ class SessionsController < ApplicationController
       if @user && @user.authenticate(params[:password])
       login
       else
-        flash.now.alert = "Email or password is invalid.  Please try again."
-        redirect_to '/login'
+        redirect_to '/login', danger: "Email or password is invalid. Please try again."
       end
     end
   end
 
   def destroy
     session.clear
-    redirect_to root_url, notice: "You are now logged out."
+    redirect_to root_url, info: "You are now logged out."
   end
 
   private

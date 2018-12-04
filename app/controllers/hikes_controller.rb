@@ -38,7 +38,6 @@ class HikesController < ApplicationController
     if current_user.id == @hike.user_id
     else
       redirect_to hike_path(@hike), warning: "Hike can only be edited by the user that created it."
-
     end
   end
 
