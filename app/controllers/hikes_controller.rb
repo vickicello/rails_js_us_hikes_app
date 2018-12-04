@@ -6,7 +6,7 @@ class HikesController < ApplicationController
   end
 
   def complete
-    @hikes = Hike.completed
+    @completed_hikes = Hike.completed
     render 'complete'
   end
 

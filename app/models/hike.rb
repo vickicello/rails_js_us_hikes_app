@@ -8,7 +8,4 @@ class Hike < ApplicationRecord
 
   scope :completed, -> { where(completed: true) }
 
-  def self.completed
-    where(completed: true)
-  end
 end

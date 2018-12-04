@@ -1,7 +1,7 @@
 <h1> Completed Hikes:</h1>
 <br />
-  <% if @hikes %>
+  <% if @completed_hikes %>
     <ul>
-      <li><%= link_to @hike.name, @hike.state, @hike.description %></li>
+      <li><%= link_to @completed_hike.name, @completed_hike.state, @completed_hike.description %></li>
     </ul>
   <% end %>
