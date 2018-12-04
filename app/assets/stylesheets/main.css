@@ -97,3 +97,9 @@ body {
   border: 1px solid green;
   padding: 10px;
 }
+
+/* <---- form style ----> */
+
+.field_with_errors input[type='text']{
+  border: 1px solid red;
+}

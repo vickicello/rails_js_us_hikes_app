@@ -6,8 +6,11 @@ class HikesController < ApplicationController
   end
 
   def completed
-    @completed_hikes = Hike.completed
-    render 'completed'
+    @hikes = Hike.completed
+  end
+
+  def recent
+    @hikes = Hike.by_recently_added
   end
 
   def new
