@@ -49,10 +49,13 @@ class HikesController < ApplicationController
   end
 
   def destroy
-    @user = current_user
     @hike = Hike.find(params[:id])
-    @hike.destroy
-    redirect_to user_hikes_path(@user), info: "Hike has been deleted."
+    if current_user.id == @hike.user_id
+      @hike.destroy
+      redirect_to user_hikes_path(current_user), info: "Hike has been deleted."
+    else 
+      redirect_to hike_path(@hike), warning: "You can only delete hikes that you've created."
+    end
   end
 
   private

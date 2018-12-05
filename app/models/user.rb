@@ -13,12 +13,4 @@ class User < ApplicationRecord
       u.password = SecureRandom.hex
     end
   end  
-  
-  # def completed_hikes
-  #   self.hikes.where(completed: true)
-  # end
-
-  # def uncompleted_hikes
-  #   self.hikes.where(completed: false)
-  # end
 end
