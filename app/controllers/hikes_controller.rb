@@ -5,10 +5,6 @@ class HikesController < ApplicationController
     @hikes = Hike.all
   end
 
-  def completed
-    @hikes = Hike.completed
-  end
-
   def recent
     @hikes = Hike.by_recently_added
   end

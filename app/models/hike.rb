@@ -6,6 +6,5 @@ class Hike < ApplicationRecord
   validates :name, presence: true
   validates :state, presence: true
 
-  scope :completed, -> { where(completed: true) }
   scope :by_recently_added, -> { order(created_at: :desc) }
 end

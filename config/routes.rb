@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy', as: 'logout'
   get '/auth/facebook/callback', to: 'sessions#create'
-  get '/hikes/completed', to: 'hikes#completed'
   get '/hikes/recent', to: 'hikes#recent'
 
   resources :users, only: [:new, :create, :show] do
