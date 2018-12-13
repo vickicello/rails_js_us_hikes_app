@@ -2,7 +2,12 @@ class HikesController < ApplicationController
   before_action :require_login, except: [:index]
   
   def index
-    @hikes = Hike.all
+    @user = User.find_by(id: params[:user_id])
+    if @user
+      @hikes = @user.hikes.all
+    else
+      @hikes = Hike.all
+    end
   end
 
   def recent
@@ -17,8 +22,7 @@ class HikesController < ApplicationController
     @user = current_user
     @hike = current_user.hikes.build(hike_params)
     if @hike.save
-      redirect_to user_hikes_path(current_user.hikes), success: "Hike succesfully saved."
-      # redirect_to user_hikes_path(@user.hikes) #I want this to go to hike show page
+      redirect_to user_hikes_path(current_user), success: "Hike succesfully saved."
     else
       render 'new'
     end
