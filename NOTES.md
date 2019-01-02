@@ -1,60 +1,48 @@
-TODO
+#TODO
 
-<!-- 1) create models and db schema -->
-  <!-- -users
-    + username
-    + password
-    + email
-    +
-  -hikes
-    + name
-    + has state_id (dropdown list)
-    + users can write comments on the hike???
-  -descriptions
-    + join table between users and hikes
-    + a user has many comments, and many hikes through comments
-    + a hike has many comments, and many users through comments
-  -states
-    + state name and 2 letter code
-    + f.select dropdown box in form -->
+0) Fix navigation system - as per notes from project 3 review
 
-<!-- 1.5) Controllers
-  <!-- -Welcome -->
-  <!-- -Sessions
-  -Users
-  -Hikes
-  -comments  -->
+0.0) Make sure everything is working with new repo and navigation system before proceeding
+  a) New ENV file
+  b) database
 
-<!-- 1.67) Seed the db -->
+-----------------------------------------
+##Rails + JS Project
 
-<!-- 2) user can check off/cross off hikes once they are created
-2.5) omniauth  can login with facebook (uid = the user's id on fb) -->
-<!-- 3) user can create, edit, view, and destroy the hikes on their list
+1) User Show Page: display index of that user's hikes
+  a) fetch hikes with AJAX GET request
+  b) backend renders posts in JSON
+  c) appends hikes to user show page
 
-  -create views 
-  -create forms -->
-  <!-- -add all oauth info -->
+2) Hike Show Page: users can sift through hikes using a 'next' button
+  a) fetch next hike with AJAX
+  b) render with JS
+  c) use Active Model Serializer
+    <!-- i) add AMS gem -->
+    ii) add next button to view
 
-<!-- 4) users can see other users' hike show page and leave a comment(?) -->
+3) Hike Show Page: render comments (my has_many relationship)
+  a) JSON through JS
 
-<!-- 5) validation, and error messages using flash -->
+4) Hike Show Page: comments form submits dynamically, creating a resource
+  a) serialize
+  b) submit via AJAX POST request
+  c) response is new object in JSON
+  d) append new comments to DOM using JS
+    i) use ES6 template literals
 
-<!-- 6) use bootstrap framework??? - CDN -->
+5) Create comment prototype object
+  a) add function to the prototype to concatenate/format comments
+    i) have 1 or more formatters, method on the prototype
+    ii) ex: comment author's first + last name
+  b) append comment info to the DOM
+------------------------------------------
+6) 30 mins working on project
 
-<!-- 7) dropdown states list in hike new view -->
+7) blog post
 
-11/27/18
+8) 5 min recorded walkthrough
 
--need to show error messages (not showing at the moment)
-
--create new hike form isn't working
-
--need to create scope info in view somewhere (finish)
-
--add username to comments somehow
-
--make comments partials (see rails guide)
-
--signup not working?
-
--finish up CRUD functionality with user.hikes, comments etc
+9) Debug and submit!
+-------------------------------------------
+##Log/end of sprint notes:

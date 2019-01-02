@@ -1,6 +1,6 @@
-# US Hikes App
+# Rails + JS - US Hikes App
 
-Welcome to the US Hikes App, where users can sign up, keep track of hikes they'd like to complete in the US, and comment on other users' hikes.  
+Welcome to the US Hikes App, where users can sign up, keep track of hikes they'd like to complete in the US, and comment on other users' hikes.  This app now features JavaScript on the frontend!
 
 ## Installation
 
@@ -8,7 +8,7 @@ Fork and clone this repository. Run bundle install to install gem dependencies. 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/vickicello/us_hikes_app. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/vickicello/rails_js_us_hikes_app. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
 ## License
 
