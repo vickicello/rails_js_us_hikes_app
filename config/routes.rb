@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :hikes, only: [:index, :new, :create, :show, :update]
   end
   
-  resources :hikes, only: [:show, :edit, :update, :destroy] do
+  resources :hikes, only: [:index, :show, :edit, :update, :destroy] do
     resources :comments
   end
 
