@@ -11,14 +11,17 @@
           <h5>Logged in as <%= current_user.username %></h5>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-value="See All Hikes"><%= link_to "See All Hikes", user_hikes_path(current_user)%></a>
+          <a class="nav-link" data-value="See All Hikes"><%= link_to "See All Hikes", hikes_path %></a>
         </li>  
         <li class="nav-item">
-          <a class="nav-link " data-value="My Hikes"><%= link_to "My Hikes", user_path(current_user)%></a>    
+          <a class="nav-link " data-value="My Hikes"><%= link_to "My Hikes", user_hikes_url(current_user.id) %></a>    
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" data-value="My Profile"><%= link_to "My Profile", user_path(current_user.id) %></a>
         </li> 
         <li class="nav-item">
           <a class="nav-link " data-value="Logout"><%= link_to "logout", '/logout' if current_user %></a>  
-        </li> 
+        </li>  
       <% else %>
         <%= link_to "Login", login_path %>
       <% end %>
