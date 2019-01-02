@@ -3,8 +3,8 @@
 0) Fix navigation system - as per notes from project 3 review
 
 0.0) Make sure everything is working with new repo and navigation system before proceeding
-  a) New ENV file
-  b) database
+  <!-- a) New ENV file
+  b) database -->
 
 -----------------------------------------
 ##Rails + JS Project
