@@ -46,3 +46,7 @@
 9) Debug and submit!
 -------------------------------------------
 ##Log/end of sprint notes:
+
+1/2/19
+* Edited out line 42 of config/environments/production due to active storage error
+* 
