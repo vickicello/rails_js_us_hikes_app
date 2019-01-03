@@ -6,6 +6,9 @@
   <!-- a) New ENV file
   b) database -->
 
+0.5) How to structure JS files?  What methods do I wish to use?
+
+0.75) What buttons do I need to add in views to get this to work?
 -----------------------------------------
 ##Rails + JS Project
 
@@ -25,7 +28,7 @@
   d) hikes/:id
   e) hikes#show
 
-3) Hike Show Page: render comments (my has_many relationship)
+3) Hike Show Page: render comments (my has_many through relationship)
   a) JSON through JS
   b) hikes/:id
   c) hikes#show
@@ -58,3 +61,5 @@
 1/2/19
 * Edited out line 42 of config/environments/production due to active storage error
 * reconfigured routes to be more RESTful.  Woo!
+
+1/3/19
