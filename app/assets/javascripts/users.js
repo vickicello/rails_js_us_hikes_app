@@ -2,7 +2,19 @@ $(document).ready(function() {
 	attachEventListeners()
 });
 
+//hikes#index
 
+//users/:id/hikes
+
+// button to click 'show my hikes', only if @user
+//if not logged in, automatically display all hikes
+
+//or should I put this button on users#show and leave hikes#index page as is?
+//not sure if this still satisfies 'list of things'/index requirement
+
+//hikes#show
+//add 'next' button to view
+//add logic to controller #show
 
 
 //Comments

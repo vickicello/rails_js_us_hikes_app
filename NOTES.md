@@ -1,5 +1,8 @@
 #TODO
+Link to repo:
+https://github.com/vickicello/rails_js_us_hikes_app
 
+Link to Kickoff Branch: https://github.com/vickicello/rails_js_us_hikes_app/tree/kickoff
 <!-- 0) Fix navigation system - as per notes from project 3 review
 
 0.0) Make sure everything is working with new repo and navigation system before proceeding -->
@@ -20,13 +23,15 @@
   c) appends hikes to user show page
   d) users/:id/hikes
   e) hikes#index
+  f) add button: show user's hikes or show recent hikes? 
 
 2) Hike Show Page: users can sift through hikes using a 'next' button
   a) fetch next hike with AJAX
+    i) do I need to use fetch function for this?
   b) render with JS
   c) use Active Model Serializer
-    <!-- i) add AMS gem -->
-    ii) add next button to view
+    i) add next button to view
+    ii) what about back, return buttons?
   d) hikes/:id
   e) hikes#show
 
@@ -34,20 +39,23 @@
   a) JSON through JS
   b) hikes/:id
   c) hikes#show
+  d) add 'load comments' button
+  e) create <div> that will display if no comments exist
 
 4) Hike Show Page: comments form submits dynamically, creating a resource
   a) serialize
   b) submit via AJAX POST request
   c) response is new object in JSON
   d) append new comments to DOM using JS
-    i) use ES6 template literals
+    i) use `(${ES6 template literals})`
   e) hikes/:id
   f) hikes#show
+  g) comments form submits dynamically and is appended to the DOM upon submission
 
 5) Create comment prototype object
   a) add function to the prototype to concatenate/format comments
     i) have 1 or more formatters, method on the prototype
-    ii) ex: comment author's first + last name
+    ii) ex: commentor's username and content of comment
   b) append comment info to the DOM
 ------------------------------------------
 6) 30 mins working on project
