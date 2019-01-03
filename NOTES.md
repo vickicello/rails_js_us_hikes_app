@@ -9,6 +9,8 @@
 0.5) How to structure JS files?  What methods do I wish to use?
 
 0.75) What buttons do I need to add in views to get this to work?
+
+0.8) What serializers do I need to create, and what attributes do I need to add to them?
 -----------------------------------------
 ##Rails + JS Project
 
@@ -63,3 +65,24 @@
 * reconfigured routes to be more RESTful.  Woo!
 
 1/3/19
+
+
+-----------------------------------------------
+##Labs to Reference:
+
+JS Classes: https://learn.co/tracks/full-stack-web-development-v6/javascript/object-oriented-js/classes
+
+Prototypes:
+https://learn.co/tracks/full-stack-web-development-v6/javascript/object-oriented-js/prototypes
+
+Loading Comments with AJAX (Video):
+https://learn.co/tracks/full-stack-web-development-v6/rails-and-javascript/using-ajax-and-rails/video-review-loading-comments-via-get-ajax
+
+Using to_json:
+https://learn.co/tracks/full-stack-web-development-v6/rails-and-javascript/building-apis/using-to_json
+
+AMS: https://learn.co/tracks/full-stack-web-development-v6/rails-and-javascript/building-apis/using-active-model-serializer
+
+Receiving API POST Requests:
+https://learn.co/tracks/full-stack-web-development-v6/rails-and-javascript/building-apis/receiving-api-posts
+
