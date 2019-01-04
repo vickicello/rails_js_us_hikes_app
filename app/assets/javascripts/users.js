@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	console.log("users.js loaded!")
 	attachEventListeners()
 });
 
