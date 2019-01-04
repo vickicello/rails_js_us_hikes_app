@@ -1,4 +1,4 @@
-<div class="comment">
+<div class="hike-comments">
   <% @hike.comments.each do |c| %>
     <p><strong><%= c.content %></strong><br />by: <%= c.commentor.username %></p><br />
       <% if current_user.id == c.user_id %>
@@ -6,6 +6,5 @@
           <div><%= submit_tag 'Delete Comment' %></div>
         <% end %>
       <% end %>
-    <%#= button_to "Delete Comment", {:controller => :comments, :action => 'destroy', :id => c.id}, :method => :delete %>
   <% end %>
 </div>

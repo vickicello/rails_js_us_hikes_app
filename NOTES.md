@@ -51,7 +51,18 @@ Link to Kickoff Branch: https://github.com/vickicello/rails_js_us_hikes_app/tree
   e) hikes/:id
   f) hikes#show
   g) comments form submits dynamically and is appended to the DOM upon submission
+  h) How do I make link to a simple comments partial? Before comments were just rendering on the hike#show page via a partial, they didn't have their own template.
+  i) Add in conditional material in case of no comments:
 
+   <% if @hike.comments.any? %> 
+      <%= link_to "Load All Comments", hike_comments_path(@hike), :class => 'load_comments' %>
+  <% else %>
+    <div class="no-comments">
+      <p>There are no comments for this hike.</p>
+  <% end %>
+    </div> 
+
+    
 5) Create comment prototype object
   a) add function to the prototype to concatenate/format comments
     i) have 1 or more formatters, method on the prototype
