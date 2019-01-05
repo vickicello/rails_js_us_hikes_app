@@ -1,7 +1,28 @@
 $(document).ready(function(){
 	console.log("users.js loaded!");
+	attachEventListeners()
 });
 
+function attachEventListeners(){
+	// listen for clicks
+	// find a link or a button, with an ID or class to identify
+	getHikes();
+}
+
+function getHikes() {
+	$.ajax({
+		// but make the url dynamic below
+		url: 'http://localhost:3000/users/1.json', 
+		dataType: 'json',
+		method: 'get'
+	}).done(function (data) {
+
+		console.log("data: ", data);
+		debugger;
+		//  json data won't go on the DOM in its raw form
+
+	})
+}
 
 
 //list of things/index page
