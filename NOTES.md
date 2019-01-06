@@ -10,10 +10,10 @@ Link to Kickoff Branch: https://github.com/vickicello/rails_js_us_hikes_app/tree
 -----------------------------------------
 ##Rails + JS Project
 
-1) User Show Page: display index of that user's hikes
+<!-- 1) User Show Page: display index of that user's hikes
   a) fetch hikes with AJAX GET request
   b) backend renders posts in JSON
-  c) appends hikes to user show page
+  c) appends hikes to user show page -->
 
 2) Hike Show Page: users can sift through hikes using a 'next' button
   a) fetch next hike with AJAX
@@ -44,8 +44,8 @@ Link to Kickoff Branch: https://github.com/vickicello/rails_js_us_hikes_app/tree
   h) How do I make link to a simple comments partial? Before comments were just rendering on the hike#show page via a partial, they didn't have their own template.
   i) Add in conditional material in case of no comments:
 
-   <% if @hike.comments.any? %> 
-      <%= link_to "Load All Comments", hike_comments_path(@hike), :class => 'load_comments' %>
+  <% if @hike.comments.any? %> 
+    <%= link_to "Load All Comments", hike_comments_path(@hike), :class => 'load_comments' %>
   <% else %>
     <div class="no-comments">
       <p>There are no comments for this hike.</p>
@@ -54,29 +54,29 @@ Link to Kickoff Branch: https://github.com/vickicello/rails_js_us_hikes_app/tree
 
 Ex show more button: 
 
-$('#show-brewery').on('click', 'button.show-more', function(e) {
+$('#show-hike').on('click', 'button.show-more', function(e) {
     e.preventDefault();
     $.ajax({
       type: "GET",
-      url: "/breweries/23",
+      url: "/hikes/2",
       dataType: 'json',
       success: function(response) {
-        showMoreBreweryBeers(response)
+        showMoreHikes(response)
       },
       error: function(response) {
         console.log(response)
-        alert("Oops! Something went wrong!")
+        alert("Something went wrong!")
        }
     })
   })
 
 ^^If there is no URL to grab, add data-url="whatever_url"  inside the button tag and then you can access it later by calling `this.dataset.url`   
 
-5) Create comment prototype object
+<!-- 5) Create comment prototype object
   a) add function to the prototype to concatenate/format comments
     i) have 1 or more formatters, method on the prototype
     ii) ex: commentor's username and content of comment
-  b) append comment info to the DOM
+  b) append comment info to the DOM -->
 ------------------------------------------
 6) 30 mins working on project
 
