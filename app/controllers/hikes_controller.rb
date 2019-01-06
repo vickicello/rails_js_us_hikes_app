@@ -8,6 +8,10 @@ class HikesController < ApplicationController
     else
       @hikes = Hike.all
     end
+    respond_to do |f| 
+      f.html { render :index }
+      f.json { render json: @hikes }
+    end
   end
 
   def recent

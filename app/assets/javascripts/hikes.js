@@ -30,64 +30,43 @@ Hike.prototype.formatHike = function() {
     <p>Description: ${this.description}</p></li>`
 }
 
- $('a.show_user_hikes').on('click', function(e){
-	$.ajax({
-		method: "GET",
-		url: this.href,
+// request via HTML
+//  $('a.show_user_hikes').on('click', function(e){
+// 	$.ajax({
+// 		method: "GET",
+// 		url: this.href,
 
-	}).success(function(response){
-		$("div.list_user_hikes").html(response)
-	}).error(function(ifNeeded){
-		alert("Error!");
-	})
-	e.preventDefault();
-})
-	
-// 	get(this.href).success(function(json){
-// 		console.log(json)
-// 		debugger;
-// 		// clear ol html
-// 		var $ol = $("div.list_user_hikes ol")
-// 		$ol.html("") // now ol is emptied
-// 			json.forEach(function(hike){
-// 				const oneHike = new Hike(hike)
-// 				const hikeHTML = oneHike.formatHike();
-// 				$ol.append(hikeHTML);
-// 			})
-// 		})
+// 	}).success(function(response){
+// 		$("div.list_user_hikes").html(response)
+// 	}).error(function(ifNeeded){
+// 		alert("Error!");
+// 	})
 // 	e.preventDefault();
-//  })
+// })
 
-	// 	$.ajax({
-	// 		// url: 'https://localhost:3000/users/1.json', 
-	// 		url: this.href,
-	// 		dataType: 'json',
-	// 		method: 'get'
-	// 	}).done(function (data) {
-	// 		console.log("data: ", data);
-	// 		//  json data won't go on the DOM in its raw form
-	
-	// 	})
-	// }
+//request via JSON
+$('a.show_user_hikes').on('click', function(e){
+	$.ajax({
+    url: this.href,
+    type: "GET",
+    dataType: "json",
+		success: function(data){
+			//clear ol html:
+	   	var $ol = $("div.list_user_hikes ol");
+    	$ol.html("") //emptied ol
+	   	//iterate over each hike with JSON:
+			data.forEach(function(hike){
+				$ol.append("<li>" + hike.name + " - " + hike.state + " - " + hike.description + "</li>");
+			});
+		}
+	});
+	e.preventDefault();
+});
 
-// function getUserHikes(data) {
-//   const userHikes = data
-//   let userHikesHTML = ``
-
-//   for (i = 0; i < userHikes.length; i++) {
-//     const hike = new Hike(userHikes[i])
-//     userHikesHTML += hike.hikeListTemplate()
-//   }
-
-//   let $ol = $('div#list-user-hikes ol')
-//   $ol.html(`${userHikesHTML}`)
-//   $('div#list-user-hikes').html();
-// }
 
 
 
 //use class Hike object to create a custom function that displays comments.   
-//Assuming you’ve created:
 
 
 //then you could use a custom function to create HTML that 
