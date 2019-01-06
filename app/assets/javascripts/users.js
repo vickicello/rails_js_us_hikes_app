@@ -8,6 +8,24 @@ function attachEventListeners(){
 	// find a link or a button, with an ID or class to identify
 	getHikes();
 }
+class Hike {
+	constructor(hikeData){
+		this.name = hikeData.name
+		this.description = hikeData.description
+		this.state = hikeData.state
+		this.completed = hikeData.completed
+		this.id = hikeData.id
+		this.userId = hikeData.user_id
+	}
+}
+
+//HTML prototype for listing user's hikes:
+Hike.prototype.hikeListTemplate = function() {
+  return `<li><h3><a href="/hikes/${this.id}", class="show-user-hikes">${this.name}</a></h3>
+    <p>State: ${this.state}</p>
+    <p>Description: ${this.description}</p></li>`
+}
+
 
 function getHikes() {
 	$.ajax({
@@ -26,20 +44,15 @@ function getHikes() {
 
 //use class Hike object to create a custom function that displays comments.   
 //Assuming you’ve created:
-class Hike {
-	constructor(obj){
-		this.name = obj.name
-		this.etc = this.etc
-	}
-}
+
 
 //then you could use a custom function to create HTML that 
 //shows the comments for an instance of Hike.
 
 Hike.prototype.commentsHTML = function(){
  return (`
-  <div>${this.name}</div>
-    <div>${this.etc}</div>
+  <div>${this.content}</div>
+    <div>${this.username}</div>
  `)
 }
 
@@ -66,10 +79,7 @@ function Comment(comment) {
 // Prototype method
 	Comment.prototype.formatComment = function() {
 		commentHTML =  `<li>${this.comment} by: ${this.username}</li>`
-		return commentHTML
+		return commentsHTML
 	}
 
-
-// Comment.prototype.formatHTML = function() {
-//   //display formatted comment with commentor username
-// }
+//submit comment using JSON
