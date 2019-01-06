@@ -10,13 +10,13 @@ Link to Kickoff Branch: https://github.com/vickicello/rails_js_us_hikes_app/tree
 -----------------------------------------
 ##Rails + JS Project
 
-1) Hikes Index Page: display index of that user's hikes
+1) User Show Page: display index of that user's hikes
   a) fetch hikes with AJAX GET request
   b) backend renders posts in JSON
   c) appends hikes to user show page
   d) users/:id/hikes
   e) hikes#index
-  f) add button: show user's hikes or show recent hikes? 
+  f) add button: show user's hikes 
 
 2) Hike Show Page: users can sift through hikes using a 'next' button
   a) fetch next hike with AJAX

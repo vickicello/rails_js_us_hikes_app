@@ -1,28 +1,17 @@
 $(document).ready(function(){
 	alert("users.js loaded!");
-	// attachEventListeners()
-});
 
-// function attachEventListeners(){
-	// listen for clicks
-	// find a link or a button, with an ID or class to identify
-	// getHikes();
+// function getHikes() {
+// 	$.ajax({
+// 		// url: 'https://localhost:3000/users/1.json', 
+// 		url: this.href,
+// 		dataType: 'json',
+// 		method: 'get'
+// 	}).done(function (data) {
+// 		console.log("data: ", data);
+// 		//  json data won't go on the DOM in its raw form
+// 	})
 // }
-
-function getHikes() {
-	$.ajax({
-		// but make the url dynamic below
-		url: 'https://localhost:3000/users/1.json', 
-		dataType: 'json',
-		method: 'get'
-	}).done(function (data) {
-
-		console.log("data: ", data);
-		debugger;
-		//  json data won't go on the DOM in its raw form
-
-	})
-}
 class Hike {
 	constructor(hikeData){
 		this.name = hikeData.name
@@ -35,11 +24,66 @@ class Hike {
 }
 
 //HTML prototype for listing user's hikes:
-Hike.prototype.hikeListTemplate = function() {
-  return `<li><h3><a href="/hikes/${this.id}", class="show-user-hikes">${this.name}</a></h3>
+Hike.prototype.formatHike = function() {
+  return `<li><h3><a href="/hikes/${this.id}", class="show_user_hikes">${this.name}</a></h3>
     <p>State: ${this.state}</p>
     <p>Description: ${this.description}</p></li>`
 }
+
+ $('a.show_user_hikes').on('click', function(e){
+	$.ajax({
+		method: "GET",
+		url: this.href,
+
+	}).success(function(response){
+		$("div.list_user_hikes").html(response)
+	}).error(function(ifNeeded){
+		alert("Error!");
+	})
+	e.preventDefault();
+})
+	
+// 	get(this.href).success(function(json){
+// 		console.log(json)
+// 		debugger;
+// 		// clear ol html
+// 		var $ol = $("div.list_user_hikes ol")
+// 		$ol.html("") // now ol is emptied
+// 			json.forEach(function(hike){
+// 				const oneHike = new Hike(hike)
+// 				const hikeHTML = oneHike.formatHike();
+// 				$ol.append(hikeHTML);
+// 			})
+// 		})
+// 	e.preventDefault();
+//  })
+
+	// 	$.ajax({
+	// 		// url: 'https://localhost:3000/users/1.json', 
+	// 		url: this.href,
+	// 		dataType: 'json',
+	// 		method: 'get'
+	// 	}).done(function (data) {
+	// 		console.log("data: ", data);
+	// 		//  json data won't go on the DOM in its raw form
+	
+	// 	})
+	// }
+
+// function getUserHikes(data) {
+//   const userHikes = data
+//   let userHikesHTML = ``
+
+//   for (i = 0; i < userHikes.length; i++) {
+//     const hike = new Hike(userHikes[i])
+//     userHikesHTML += hike.hikeListTemplate()
+//   }
+
+//   let $ol = $('div#list-user-hikes ol')
+//   $ol.html(`${userHikesHTML}`)
+//   $('div#list-user-hikes').html();
+// }
+
 
 
 //use class Hike object to create a custom function that displays comments.   
@@ -83,3 +127,4 @@ function Comment(comment) {
 	}
 
 //submit comment using JSON
+});

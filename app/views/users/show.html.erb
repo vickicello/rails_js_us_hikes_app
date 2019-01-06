@@ -2,9 +2,10 @@
 
 <%= link_to "Create new hike", new_user_hike_path(@user) %><br />
 
-<h4><%= @user.username %></h4>has created the following hikes:
-<ul><% @user.hikes.each do |hike| %>
-  <li><%= link_to hike.name, hike_path(hike) %></li>
-<% end %></ul><br />
+<h4>Click <%= link_to "here ", user_hikes_url(@user.id), class: 'show_user_hikes' %>to see <%= @user.username %>'s hikes!</h4>
+
+<div class="list_user_hikes">
+  <ol></ol>
+</div>
 
 <h3>Click <%= link_to('here', '/hikes/recent') %> to see recently added hikes!</h3>
