@@ -17,8 +17,8 @@ class UsersController < ApplicationController
     require_login
     @user = User.find(params[:id])
     respond_to do |f| 
-      f.html {render :show}
-      f.json {render json: @user}
+      f.html { render :show }
+      f.json { render json: @user }
     end
   end
   

@@ -3,17 +3,10 @@ Link to repo:
 https://github.com/vickicello/rails_js_us_hikes_app
 
 Link to Kickoff Branch: https://github.com/vickicello/rails_js_us_hikes_app/tree/kickoff
-<!-- 0) Fix navigation system - as per notes from project 3 review
-
-0.0) Make sure everything is working with new repo and navigation system before proceeding -->
-  <!-- a) New ENV file
-  b) database -->
 
 0.5) How to structure JS files?  What methods do I wish to use?
 
 0.75) What buttons do I need to add in views to get this to work?
-
-0.8) What serializers do I need to create, and what attributes do I need to add to them?
 -----------------------------------------
 ##Rails + JS Project
 
@@ -62,7 +55,26 @@ Link to Kickoff Branch: https://github.com/vickicello/rails_js_us_hikes_app/tree
   <% end %>
     </div> 
 
-    
+Ex show more button: 
+
+$('#show-brewery').on('click', 'button.show-more', function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: "GET",
+      url: "/breweries/23",
+      dataType: 'json',
+      success: function(response) {
+        showMoreBreweryBeers(response)
+      },
+      error: function(response) {
+        console.log(response)
+        alert("Oops! Something went wrong!")
+       }
+    })
+  })
+
+^^If there is no URL to grab, add data-url="whatever_url"  inside the button tag and then you can access it later by calling `this.dataset.url`   
+
 5) Create comment prototype object
   a) add function to the prototype to concatenate/format comments
     i) have 1 or more formatters, method on the prototype

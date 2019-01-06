@@ -24,6 +24,24 @@ function getHikes() {
 	})
 }
 
+//use class Hike object to create a custom function that displays comments.   
+//Assuming you’ve created:
+class Hike {
+	constructor(obj){
+		this.name = obj.name
+		this.etc = this.etc
+	}
+}
+
+//then you could use a custom function to create HTML that 
+//shows the comments for an instance of Hike.
+
+Hike.prototype.commentsHTML = function(){
+ return (`
+  <div>${this.name}</div>
+    <div>${this.etc}</div>
+ `)
+}
 
 //list of things/index page
 //users/:id  aka  users#show
