@@ -1,12 +1,27 @@
 $(document).ready(function(){
-	console.log("users.js loaded!");
-	attachEventListeners()
+	alert("users.js loaded!");
+	// attachEventListeners()
 });
 
-function attachEventListeners(){
+// function attachEventListeners(){
 	// listen for clicks
 	// find a link or a button, with an ID or class to identify
-	getHikes();
+	// getHikes();
+// }
+
+function getHikes() {
+	$.ajax({
+		// but make the url dynamic below
+		url: 'https://localhost:3000/users/1.json', 
+		dataType: 'json',
+		method: 'get'
+	}).done(function (data) {
+
+		console.log("data: ", data);
+		debugger;
+		//  json data won't go on the DOM in its raw form
+
+	})
 }
 class Hike {
 	constructor(hikeData){
@@ -26,21 +41,6 @@ Hike.prototype.hikeListTemplate = function() {
     <p>Description: ${this.description}</p></li>`
 }
 
-
-function getHikes() {
-	$.ajax({
-		// but make the url dynamic below
-		url: 'http://localhost:3000/users/1.json', 
-		dataType: 'json',
-		method: 'get'
-	}).done(function (data) {
-
-		console.log("data: ", data);
-		debugger;
-		//  json data won't go on the DOM in its raw form
-
-	})
-}
 
 //use class Hike object to create a custom function that displays comments.   
 //Assuming you’ve created:
