@@ -1,6 +1,12 @@
-<h1>Hike Info:</h1><br />
-<h2><%= @hike.name %> - <%= @hike.state %></h2>
-<p><%= @hike.description %></p><br />
+<div id="show-hike">
+  <h1>Hike Info:</h1><br />
+  <h2 class="hikeName"><%= @hike.name %></h2>
+  <h3 class="hikeState"><%= @hike.state %></h3>
+  <p class="hikeDescription"><%= @hike.description %></p><br />
+
+<%= link_to "Next Hike", "/hikes/#{@hike[:id] + 1 }", class: "next-hike" %>
+<%= link_to "Previous Hike", "/hikes/#{@hike[:id] - 1 }", class: "previous-hike" %>
+</div>
 
 <h2>Add a comment:</h2>
   <%= render 'comments/form' %>
