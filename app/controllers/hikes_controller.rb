@@ -36,6 +36,10 @@ class HikesController < ApplicationController
     @user = current_user
     @hike ||= Hike.find(params[:id])
     @comment = Comment.new(:hike => @hike)
+    respond_to do |f| 
+      f.html { render :index }
+      f.json { render json: @hikes }
+    end
   end
 
   def edit
