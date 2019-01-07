@@ -102,6 +102,22 @@ $('#show-hike').on('click', 'a.next-hike', function(e) {
 	})
 })
 
+// // show previous hike
+$('#show-hike').on('click', 'a.previous-hike', function(e) {
+	e.preventDefault();
+	$.ajax({
+		type: "GET",
+		url: this.href,
+		dataType: 'json',
+		success: function(response) {
+			getHike(response)
+		},
+		error: function(response) {
+			alert("Something went wrong")
+		}
+	})
+})
+
 // render hike#show
 // $('#show-user-hike').on('click', 'a.show-hike', function(e) {
 // 	e.preventDefault();
@@ -119,23 +135,6 @@ $('#show-hike').on('click', 'a.next-hike', function(e) {
 // 	})
 // })
 	
-// // show previous hike
-$('#show-hike').on('click', 'a.previous-hike', function(e) {
-	e.preventDefault();
-	$.ajax({
-		type: "GET",
-		url: this.href,
-		dataType: 'json',
-		success: function(response) {
-			getHike(response)
-		},
-		error: function(response) {
-			alert("Something went wrong")
-		}
-	})
-})
-
-
 
 //use class Hike object to create a custom function that displays comments.   
 
