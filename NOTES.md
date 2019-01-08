@@ -15,22 +15,20 @@ Link to Kickoff Branch: https://github.com/vickicello/rails_js_us_hikes_app/tree
   b) backend renders posts in JSON
   c) appends hikes to user show page -->
 
-2) Hike Show Page: users can sift through hikes using a 'next' button
-  a) fetch next hike with AJAX
-    i) do I need to use fetch function for this?
+2) Hike Show Page: users can click on 'show comments' button (displays has_many relationship)
+  a) fetch comment data with AJAX
   b) render with JS
   c) use Active Model Serializer
-    i) add next button to view
-    ii) what about back, return buttons?
+    i) add button to view
   d) hikes/:id
   e) hikes#show
+  f) create <div> that will display if no comments exist
 
-3) Hike Show Page: render comments (my has_many through relationship)
-  a) JSON through JS
+3) Hike Show Page: render comments form (my has_many through relationship)
+  a) JSON through JS (or do through partial)
   b) hikes/:id
   c) hikes#show
-  d) add 'load comments' button
-  e) create <div> that will display if no comments exist
+  d) add 'new comment' button
 
 4) Hike Show Page: comments form submits dynamically, creating a resource
   a) serialize
@@ -42,8 +40,10 @@ Link to Kickoff Branch: https://github.com/vickicello/rails_js_us_hikes_app/tree
   f) hikes#show
   g) comments form submits dynamically and is appended to the DOM upon submission
   h) How do I make link to a simple comments partial? Before comments were just rendering on the hike#show page via a partial, they didn't have their own template.
-  i) Add in conditional material in case of no comments:
 
+    -should I add comment form via JS to Hike Prototype or make Comment Prototype???
+
+Misc:
   <% if @hike.comments.any? %> 
     <%= link_to "Load All Comments", hike_comments_path(@hike), :class => 'load_comments' %>
   <% else %>
@@ -52,23 +52,6 @@ Link to Kickoff Branch: https://github.com/vickicello/rails_js_us_hikes_app/tree
   <% end %>
     </div> 
 
-Ex show more button: 
-
-$('#show-hike').on('click', 'button.show-more', function(e) {
-    e.preventDefault();
-    $.ajax({
-      type: "GET",
-      url: "/hikes/2",
-      dataType: 'json',
-      success: function(response) {
-        showMoreHikes(response)
-      },
-      error: function(response) {
-        console.log(response)
-        alert("Something went wrong!")
-       }
-    })
-  })
 
 ^^If there is no URL to grab, add data-url="whatever_url"  inside the button tag and then you can access it later by calling `this.dataset.url`   
 

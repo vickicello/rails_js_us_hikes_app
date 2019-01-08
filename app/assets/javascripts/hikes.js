@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	alert("users.js loaded!");
+	// alert("users.js loaded!");
 
 class Hike {
 	constructor(hikeData){
@@ -64,88 +64,11 @@ $('a.show_user_hikes').on('click', function(e){
 //add 'next' button to view (and then maybe 'previous' button)
 //add logic to hikes_controller #show
 
-
-// fetch next/previous hike function
-function getHike(data) {
-  const hike = new Hike(data)
-  let thisHike = hike.id
-
-  $('div#show-hike').html("")
-
-  // statement for buttons and html
-  if (thisHike === 0) {
-    $('div#show-hike').html(`${hike.hikeInfoTemplate()}
-      <a href="/hikes/${thisHike}+1" class="next-hike">Next Hike</a>`)
-  } else if (thisHike === thisHike.length - 1) {
-    $('div#show-hike').html(`${hike.hikeInfoTemplate()}
-      <a href="/hikes/${thisHike}-1" class="previous-hike">Previous Hike</a>`)
-  } else {
-    $('div#show-hike').html(`${hike.hikeInfoTemplate()}
-      <a href="/hikes/${thisHike}-1" class="previous-hike">Previous Hike</a>
-      <a href="/hikes/${thisHike}+1" class="next-hike">Next Hike</a>`)
-  }
-}
-
-// show next hike
-$('#show-hike').on('click', 'a.next-hike', function(e) {
-	e.preventDefault();
-	$.ajax({
-		type: "GET",
-		url: this.href,
-		dataType: 'json',
-		success: function(response) {
-			getHike(response)
-		},
-		error: function(response) {
-			alert("Something went wrong")
-		}
-	})
-})
-
-// // show previous hike
-$('#show-hike').on('click', 'a.previous-hike', function(e) {
-	e.preventDefault();
-	$.ajax({
-		type: "GET",
-		url: this.href,
-		dataType: 'json',
-		success: function(response) {
-			getHike(response)
-		},
-		error: function(response) {
-			alert("Something went wrong")
-		}
-	})
-})
-
-// render hike#show
-// $('#show-user-hike').on('click', 'a.show-hike', function(e) {
-// 	e.preventDefault();
-// 	$.ajax({
-// 		type: "GET",
-// 		url: this.href,
-// 		dataType: 'json',
-// 		success: function(response) {
-// 			$('div#show-user').html('')
-// 			getHike(response)
-// 		},
-// 		error: function(response) {
-// 			alert("Something went wrong")
-// 		}
-// 	})
-// })
-	
-
 //use class Hike object to create a custom function that displays comments.   
 
 
 //then you could use a custom function to create HTML that 
 //shows the comments for an instance of Hike.
-
-
-
-
-
 
 
 //Comments
