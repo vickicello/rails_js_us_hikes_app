@@ -19,7 +19,6 @@ Link to Kickoff Branch: https://github.com/vickicello/rails_js_us_hikes_app/tree
   a) fetch comment data with AJAX
   b) render with JS
   c) use Active Model Serializer
-    i) add button to view
   d) hikes/:id
   e) hikes#show
   f) create <div> that will display if no comments exist
@@ -61,7 +60,7 @@ Misc:
     ii) ex: commentor's username and content of comment
   b) append comment info to the DOM -->
 ------------------------------------------
-6) 30 mins working on project
+<!-- 6) 30 mins working on project -->
 
 7) blog post
 
@@ -75,7 +74,7 @@ Misc:
 * Edited out line 42 of config/environments/production due to active storage error
 * reconfigured routes to be more RESTful.  Woo!
 
-1/3/19
+
 
 
 -----------------------------------------------
