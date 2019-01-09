@@ -61,11 +61,7 @@ $('a.show_user_hikes').on('click', function(e){
 
 
 //hikes#show
-//add 'next' button to view (and then maybe 'previous' button)
-//add logic to hikes_controller #show
-
 //use class Hike object to create a custom function that displays comments.   
-
 
 //then you could use a custom function to create HTML that 
 //shows the comments for an instance of Hike.
@@ -80,16 +76,20 @@ $('a.show_user_hikes').on('click', function(e){
 // 	`)
 //  }
 
-
-
 class Comment {
 	constructor(commentData){
-		this.username = commentData.commentor.username
-		this.commentBody = commentData.content
-		this.hikeId = commentData.hike_id
-		// this.userId = commentData.user_id
 		this.id = commentData.id
+		this.userId = commentData.user_id
+		this.hikeId = commentData.hike_id
+		this.commentBody = commentData.content
+		this.commentorId = commentData.commentor.id
+		this.commentorUsername = commentData.commentor.username
+		this.commentorEmail = commentData.commentor.email		
 	}
+}
+// Prototype method
+Comment.prototype.formatComment = function() {
+	return `<li>${this.commentBody} by: ${this.commentorUsername}</li>`
 }
 
 // // JS constructor 
@@ -98,26 +98,21 @@ class Comment {
 // 	this.comment = comment.content
 // }
 
-// Prototype method
-	Comment.prototype.formatComment = function() {
-		commentHTML =  `<li>${this.commentBody} by: ${this.username}</li>`
-		return commentsHTML
-	}
-
-// Get comment data via AJAX
+//Get comment data via AJAX
 // $("a.load_comments").on("click", function(e){
 // 	$.get(this.href).success(function(comments){
 // 		var $ul = $("div.hike_comments");
 // 		$ul.html("")
-
 // 		comments.forEach(function(comment){
 // 			const oneComment = new Comment(comment);
 // 			const commentHTML = oneComment.formatComment();
+// 			// debugger;
 // 			$ul.append(commentHTML);
 // 		})
 // 	})
 // 	e.preventDefault();
 // });
+
 
 $("a.load_comments").on("click", function(e){
 	$.ajax({
@@ -128,9 +123,11 @@ $("a.load_comments").on("click", function(e){
 			//clear ul html:
 			var $ul = $("div.hike_comments");
 			$ul.html("")
+			
 	   	//iterate over each hike with JSON:
 			data.forEach(function(comment){
-				$ul.append('<li>' + comment.commentBody + ' - by :' + comment.username + '</li>');
+				debugger;
+				$ul.append('<li>' + comment.content + ' - by : ' + comment.commentor.username + '</li>');
 			}).error(function(ifNeeded){
 				alert("eeeee!")
 			})
