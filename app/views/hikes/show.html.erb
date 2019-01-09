@@ -4,16 +4,15 @@
   <h3 class="hikeState"><%= @hike.state %></h3>
   <p class="hikeDescription"><%= @hike.description %></p><br />
 </div>
+
+<%= link_to "Click here to see comments", hike_comments_path(@hike), class: "load_comments" %>
+
 <div class='new_comment'>
   <h2>Add a comment:</h2>
     <%= render 'comments/form' %>
   <br />
 </div>
-<div class='load_comments'>
-  <h3>Comments:</h3>
-    <%= render 'comments/comments'%>
-  <br />
-</div>
+
 <%= link_to "Edit", edit_hike_path(@hike) %>
 <%= link_to "Back", user_hikes_path(@user) %>
 <%= link_to "Delete", @hike, method: :delete, data: { confirm: "Are you sure you want to delete this hike?"} %>

@@ -46,7 +46,7 @@ $('a.show_user_hikes').on('click', function(e){
     url: this.href,
     type: "GET",
     dataType: "json",
-		success: function(data){
+	  success: function(data){
 			//clear ol html:
 	   	var $ol = $("div.list_user_hikes ol");
     	$ol.html("") //emptied ol
@@ -73,24 +73,72 @@ $('a.show_user_hikes').on('click', function(e){
 
 //Comments
 //should I put this in it's own JS file?
-Hike.prototype.commentsHTML = function(){
-	return (`
-	 <div>${this.content}</div>
-		 <div>${this.username}</div>
-	`)
- }
+// Hike.prototype.commentsHTML = function(){
+// 	return (`
+// 	 <div>${this.content}</div>
+// 		 <div>${this.username}</div>
+// 	`)
+//  }
 
-// JS constructor 
-function Comment(comment) {
-	this.username = comment.commentor.username
-	this.comment = comment.content
+
+
+class Comment {
+	constructor(commentData){
+		this.username = commentData.commentor.username
+		this.commentBody = commentData.content
+		this.hikeId = commentData.hike_id
+		// this.userId = commentData.user_id
+		this.id = commentData.id
+	}
 }
+
+// // JS constructor 
+// function Comment(comment) {
+// 	this.username = comment.commentor.username
+// 	this.comment = comment.content
+// }
 
 // Prototype method
 	Comment.prototype.formatComment = function() {
-		commentHTML =  `<li>${this.comment} by: ${this.username}</li>`
+		commentHTML =  `<li>${this.commentBody} by: ${this.username}</li>`
 		return commentsHTML
 	}
+
+// Get comment data via AJAX
+// $("a.load_comments").on("click", function(e){
+// 	$.get(this.href).success(function(comments){
+// 		var $ul = $("div.hike_comments");
+// 		$ul.html("")
+
+// 		comments.forEach(function(comment){
+// 			const oneComment = new Comment(comment);
+// 			const commentHTML = oneComment.formatComment();
+// 			$ul.append(commentHTML);
+// 		})
+// 	})
+// 	e.preventDefault();
+// });
+
+$("a.load_comments").on("click", function(e){
+	$.ajax({
+		url: this.href,
+    type: "GET",
+    dataType: "json",
+	}).success(function(data){
+			//clear ul html:
+			var $ul = $("div.hike_comments");
+			$ul.html("")
+	   	//iterate over each hike with JSON:
+			data.forEach(function(comment){
+				$ul.append('<li>' + comment.commentBody + ' - by :' + comment.username + '</li>');
+			}).error(function(ifNeeded){
+				alert("eeeee!")
+			})
+		}
+	);
+	e.preventDefault();
+});
+
 
 //submit comment using JSON
 });

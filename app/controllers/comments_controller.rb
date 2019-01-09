@@ -1,6 +1,16 @@
 class CommentsController < ApplicationController
   before_action :require_login
 
+  def index
+    @user = current_user
+    @hike ||= Hike.find(params[:hike_id])
+    @comment = @hike.comments
+    respond_to do |f| 
+      f.html { render :index }
+      f.json { render json: @hike.comments }
+    end
+  end
+
   def create
     @user = current_user
     @hike = Hike.find(params[:hike_id])
