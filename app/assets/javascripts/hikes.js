@@ -66,16 +66,6 @@ $('a.show_user_hikes').on('click', function(e){
 //then you could use a custom function to create HTML that 
 //shows the comments for an instance of Hike.
 
-
-//Comments
-//should I put this in it's own JS file?
-// Hike.prototype.commentsHTML = function(){
-// 	return (`
-// 	 <div>${this.content}</div>
-// 		 <div>${this.username}</div>
-// 	`)
-//  }
-
 class Comment {
 	constructor(commentData){
 		this.id = commentData.id
@@ -87,16 +77,6 @@ class Comment {
 		this.commentorEmail = commentData.commentor.email		
 	}
 }
-// Prototype method
-Comment.prototype.formatComment = function() {
-	return `<li>${this.commentBody} by: ${this.commentorUsername}</li>`
-}
-
-// // JS constructor 
-// function Comment(comment) {
-// 	this.username = comment.commentor.username
-// 	this.comment = comment.content
-// }
 
 //Get comment data via AJAX
 // $("a.load_comments").on("click", function(e){
@@ -126,7 +106,6 @@ $("a.load_comments").on("click", function(e){
 			
 	   	//iterate over each hike with JSON:
 			data.forEach(function(comment){
-				debugger;
 				$ul.append('<li>' + comment.content + ' - by : ' + comment.commentor.username + '</li>');
 			}).error(function(ifNeeded){
 				alert("eeeee!")
@@ -136,6 +115,28 @@ $("a.load_comments").on("click", function(e){
 	e.preventDefault();
 });
 
+// // JS constructor 
+// function Comment(comment) {
+// 	this.commentUsername = comment.commentor.username
+// 	this.commentContent = comment.content
+// }
 
-//submit comment using JSON
+// // Prototype method
+// Comment.prototype.formatComment = function() {
+// 	return `<li>${this.commentContent} by: ${this.commentUsername}</li>`
+// }
+
+//submit comment using AJAX
+ $(".new_comment").on("submit", function(e){
+  $.post(this.action, $(this).serialize(), function(comment){
+		debugger;
+			const $ol = $("div.hike_comments");
+			const newComment = new Comment(comment);
+			const commentHTML = newComment.formatComment();
+				$ol.html(commentHTML);
+
+	});
+	e.preventDefault();
+});
+
 });

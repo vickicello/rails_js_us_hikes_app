@@ -6,7 +6,10 @@
 </div>
 
 <%= link_to "Click here to see comments", hike_comments_path(@hike), class: "load_comments" %>
-<div class='hike_comments'></div>
+<div class='hike_comments'>
+  <ul></ul>
+</div>
+
 <div class='new_comment'>
   <h2>Add a comment:</h2>
     <%= render 'comments/form' %>
