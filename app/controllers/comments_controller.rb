@@ -16,9 +16,11 @@ class CommentsController < ApplicationController
     @hike = Hike.find(params[:hike_id])
     @comment = @hike.comments.create(comment_params)
     if @comment.save
-      redirect_to hike_path(@hike), success: "Comment was successfully created."
+      render 'comments/show', layout: false
+      # redirect_to hike_path(@hike), success: "Comment was successfully created."
     else
-      redirect_to hike_path(@hike), danger: "Error creating comment. Please try again."
+      render 'hikes/show', layout: false
+      # redirect_to hike_path(@hike), danger: "Error creating comment. Please try again."
     end
   end
 

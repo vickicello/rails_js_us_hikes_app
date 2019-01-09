@@ -7,13 +7,31 @@
 
 <%= link_to "Click here to see comments", hike_comments_path(@hike), class: "load_comments" %>
 <div class='hike_comments'>
-  <ul></ul>
+  <% @hike.comments.each do |c| %>
+  <ul>
+    <li><%= c.content %><br>by: <%= c.commentor.username %></li><br>
+      <% if current_user.id == c.user_id %>
+        <%= form_tag(hike_comment_path(@hike, c), method: "delete") do %>
+          <div><%= submit_tag 'Delete Comment' %></div>
+        <% end %>
+      <% end %>
+  </ul>
+  <% end %>
 </div>
+
+<div class='fancy_hike_comments'>
+  <ul><% if current_user.id == @comment.user_id %>
+    <%= form_tag(hike_comment_path(@hike, @comment), method: "delete") do %>
+      <div><%= submit_tag 'Delete Comment' %></div>
+    <% end %>
+  <% end %></ul>
+</div>
+
 
 <div class='new_comment'>
   <h2>Add a comment:</h2>
     <%= render 'comments/form' %>
-  <br />
+  <br>
 </div>
 
 <%= link_to "Edit", edit_hike_path(@hike) %>

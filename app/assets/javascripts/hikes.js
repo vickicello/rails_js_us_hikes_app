@@ -62,7 +62,6 @@ $('a.show_user_hikes').on('click', function(e){
 
 //hikes#show
 //use class Hike object to create a custom function that displays comments.   
-
 //then you could use a custom function to create HTML that 
 //shows the comments for an instance of Hike.
 
@@ -86,34 +85,33 @@ class Comment {
 // 		comments.forEach(function(comment){
 // 			const oneComment = new Comment(comment);
 // 			const commentHTML = oneComment.formatComment();
-// 			// debugger;
+// 		
 // 			$ul.append(commentHTML);
 // 		})
 // 	})
 // 	e.preventDefault();
 // });
 
-
-$("a.load_comments").on("click", function(e){
-	$.ajax({
-		url: this.href,
-    type: "GET",
-    dataType: "json",
-	}).success(function(data){
-			//clear ul html:
-			var $ul = $("div.hike_comments");
-			$ul.html("")
-			
-	   	//iterate over each hike with JSON:
-			data.forEach(function(comment){
-				$ul.append('<li>' + comment.content + ' - by : ' + comment.commentor.username + '</li>');
-			}).error(function(ifNeeded){
-				alert("eeeee!")
-			})
-		}
-	);
-	e.preventDefault();
-});
+//this is working to show comments via AJAX when you click the show comments button
+// $("a.load_comments").on("click", function(e){
+// 	$.ajax({
+// 		url: this.href,
+//     type: "GET",
+//     dataType: "json",
+// 	}).success(function(data){
+// 			//clear ul html:
+// 			var $ul = $("div.hike_comments");
+// 			$ul.html("")
+// 	   	//iterate over each hike with JSON:
+// 			data.forEach(function(comment){
+// 				$ul.append('<li>' + comment.content + ' - by : ' + comment.commentor.username + '</li>');
+// 			}).error(function(ifNeeded){
+// 				alert("eeeee!")
+// 			})
+// 		});
+	
+// 	e.preventDefault();
+// });
 
 // // JS constructor 
 // function Comment(comment) {
@@ -126,17 +124,27 @@ $("a.load_comments").on("click", function(e){
 // 	return `<li>${this.commentContent} by: ${this.commentUsername}</li>`
 // }
 
+ // $.post(this.action, $(this).serialize(), function(comment){
+	// 	debugger;
+	// 		const $ol = $("div.hike_comments");
+	// 		const newComment = new Comment(comment);
+	// 		const commentHTML = newComment.formatComment();
+	// 			$ol.html(commentHTML);
+
 //submit comment using AJAX
  $(".new_comment").on("submit", function(e){
-  $.post(this.action, $(this).serialize(), function(comment){
-		debugger;
-			const $ol = $("div.hike_comments");
-			const newComment = new Comment(comment);
-			const commentHTML = newComment.formatComment();
-				$ol.html(commentHTML);
-
-	});
-	e.preventDefault();
-});
+	 $.ajax({
+		 type: "POST",
+		 url: this.action,
+		 data: $(this).serialize()
+		}).success(function(response){
+			$("#comment_content").val("");
+			var $ul = $("div.fancy_hike_comments ul")
+			$ul.append(response);
+		//  }).error(function(ifNeeded){
+		// 		alert("eeeee!")
+		});
+	  e.preventDefault();
+  });
 
 });
