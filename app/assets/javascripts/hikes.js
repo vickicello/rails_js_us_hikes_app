@@ -18,10 +18,8 @@ Hike.prototype.formatHike = function() {
   return `<li><h3><a href="/hikes/${this.id}", class="show_hike_details">${this.name}</a></h3></li>`
 }
 
-Hike.prototype.hikeInfoTemplate = function() {
-  return `<h3>${this.name}</h3>
-    <p>State: ${this.state}</p>
-    <p>Description: ${this.description}</p>`
+Hike.prototype.showHikeDetails = function() {
+  return `<li>${this.state}<br>${this.description}<br></li>`
 }
 
 // request via HTML - keep!
@@ -38,7 +36,7 @@ Hike.prototype.hikeInfoTemplate = function() {
 // 	e.preventDefault();
 // })
 
-//request via JSON = keep !!!
+//request via JSON without prototype = keep !!!
 // $('a.show_user_hikes').on('click', function(e){
 // 	$.ajax({
 //     url: this.href,
@@ -57,7 +55,7 @@ Hike.prototype.hikeInfoTemplate = function() {
 // 	e.preventDefault();
 // });
 
-//render using prototype
+//render using prototype = finished product!!!
 $('a.show_user_hikes').on('click', function(e){
 	$.ajax({
     url: this.href,
@@ -67,7 +65,6 @@ $('a.show_user_hikes').on('click', function(e){
 			//clear ol html:
 	   	const $ol = $("div.list_user_hikes ol");
 			$ol.html("") //emptied ol
-			// debugger;
 			data.forEach((hike, index)=>{
 				let newHike = new Hike(hike)
 				let newHikeHTML = newHike.formatHike()
@@ -78,20 +75,25 @@ $('a.show_user_hikes').on('click', function(e){
 	e.preventDefault();
 });
 
+//show hike details on user show page
 $('a.show_hike_details').on('click', function(e){
 	$.ajax({
     url: this.href,
     type: "GET",
     dataType: "json",
 	  success: function(data){
-			//clear ol html:
-	   	const $ol = $("div.list_user_hikes ol");
-			$ol.html("") //emptied ol
-
-//hikes#show
-//use class Hike object to create a custom function that displays comments.   
-//then you could use a custom function to create HTML that 
-//shows the comments for an instance of Hike.
+			//clear ul html:
+	   	const $ul = $("div.hike_details ul");
+			$ul.html("") //emptied ul
+			data.forEach((hike, index)=>{
+				let newHikeWithDetails = new Hike(hike)
+				let newHikeWithDetailsHTML = newHikeWithDetails.showHikeDetails()
+				$ol.append(newHikeWithDetailsHTML)
+			})
+		}
+	});
+	e.preventDefault();
+});
 
 class Comment {
 	constructor(commentData){
@@ -120,7 +122,7 @@ class Comment {
 // 	e.preventDefault();
 // });
 
-//this is working to show comments via AJAX when you click the show comments button
+//this is working to show comments via AJAX when you click the show comments button - keep!!!!
 // $("a.load_comments").on("click", function(e){
 // 	$.ajax({
 // 		url: this.href,
@@ -140,17 +142,6 @@ class Comment {
 	
 // 	e.preventDefault();
 // });
-
-// // JS constructor 
-// function Comment(comment) {
-// 	this.commentUsername = comment.commentor.username
-// 	this.commentContent = comment.content
-// }
-
-// // Prototype method
-// Comment.prototype.formatComment = function() {
-// 	return `<li>${this.commentContent} by: ${this.commentUsername}</li>`
-// }
 
  // $.post(this.action, $(this).serialize(), function(comment){
 	// 	debugger;
