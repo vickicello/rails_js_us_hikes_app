@@ -86,6 +86,31 @@ class Comment {
 	}
 }
 
+//prototype for displaying Hike details
+Comment.prototype.formatComment = function() {
+	return `<li>${this.commentBody}<br>${this.commentorUsername}<br></li>`
+}
+
+	$("a.load_comments").on("click", function(e){
+		$.ajax({
+			url: this.href,
+			type: "GET",
+			dataType: "json",
+			success: function(data){
+				//clear ul html:
+				const $list_comments_ul = $("div.hike_comments ul");
+				$list_comments_ul.html("")
+				debugger;
+				data.forEach((comment, index)=>{
+					let oneComment = new Comment(comment)
+					let oneCommentHTML = oneComment.formatComment()
+					$list_comments_ul.append(oneCommentHTML)
+				})
+			}
+		});
+		e.preventDefault();
+	});
+
 //Get comment data via AJAX
 // $("a.load_comments").on("click", function(e){
 // 	$.get(this.href).success(function(comments){
@@ -100,31 +125,27 @@ class Comment {
 // 	e.preventDefault();
 // });
 
-//this is working to show comments via AJAX when you click the show comments button - keep!!!!
+//this is (currently not) working to show comments via AJAX when you click the show comments button - keep!!!!
 // $("a.load_comments").on("click", function(e){
 // 	$.ajax({
 // 		url: this.href,
 //     type: "GET",
 //     dataType: "json",
 // 	}).success(function(data){
+// 		debugger;
 // 			//clear ul html:
-// 			var $ul = $("div.hike_comments");
-// 			$ul.html("")
+// 			const $list_comments_ul = $("div.hike_comments");
+// 			$list_comments_ul.html("")
 // 	   	//iterate over each hike with JSON:
 // 			data.forEach(function(comment){
-// 				$ul.append('<li>' + comment.content + ' - by : ' + comment.commentor.username + '</li>');
+// 				$list_comments_ul.append('<li>' + comment.content + ' - by : ' + comment.commentor.username + '</li>');
 // 			}).error(function(ifNeeded){
-// 				alert("eeeee!")
+// 				alert("Error!")
 // 			})
 // 		});	
 // 	e.preventDefault();
 // });
 
- // $.post(this.action, $(this).serialize(), function(comment){
-	// 		const $ol = $("div.hike_comments");
-	// 		const newComment = new Comment(comment);
-	// 		const commentHTML = newComment.formatComment();
-	// 			$ol.html(commentHTML);
 
 //submit comment form using AJAX
  $(".new_comment").on("submit", function(e){

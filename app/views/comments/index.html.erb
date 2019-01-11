@@ -1,9 +1,9 @@
 <div class="hike_comments">
-  <% @hike.comments.each do |c| %>
+  <% @hike.comments.each do |comment| %>
   <ul>
-    <li><strong><%= c.content %></strong><br />by: <%= c.commentor.username %></li><br />
-      <% if current_user.id == c.user_id %>
-        <%= form_tag(hike_comment_path(@hike, c), method: "delete") do %>
+    <li><strong><%= comment.content %></strong><br />by: <%= comment.commentor.username %></li><br />
+      <% if current_user.id == comment.user_id %>
+        <%= form_tag(hike_comment_path(@hike, comment), method: "delete") do %>
           <div><%= submit_tag 'Delete Comment' %></div>
         <% end %>
       <% end %>

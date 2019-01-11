@@ -14,7 +14,7 @@
 
 [X] Your Rails application must reveal at least one `has-many` relationship through JSON that is then rendered to the page.
 
-[] Must use your Rails application to render a form for creating a resource that is submitted dynamically through JavaScript.
+[X] Must use your Rails application to render a form for creating a resource that is submitted dynamically through JavaScript.
 
 [X] At least one of the JS Model Objects must have a method on the prototype.
 
