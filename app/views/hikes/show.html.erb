@@ -1,6 +1,13 @@
 <div id="show-hike">
-  <h1>Hike Info:</h1><br />
+  <h1>Hike Info:</h1><br>
   <h2 class="hikeName"><%= @hike.name %></h2>
+  <%= link_to "Click here to see hike details", hike_path(@hike), class: "show_hike_details" %>
+
+  <br>
+<div class="hike_details">
+  <ul></ul>
+</div>
+
   <h3 class="hikeState"><%= @hike.state %></h3>
   <p class="hikeDescription"><%= @hike.description %></p><br />
 </div>
@@ -20,11 +27,13 @@
 </div>
 
 <div class='fancy_hike_comments'>
-  <ul><% if current_user.id == @comment.user_id %>
-    <%= form_tag(hike_comment_path(@hike, @comment), method: "delete") do %>
-      <div><%= submit_tag 'Delete Comment' %></div>
+  <ul>
+    <% if current_user.id == @comment.user_id %>
+      <%= form_tag(hike_comment_path(@hike, @comment), method: "delete") do %>
+      <li><%= submit_tag 'Delete Comment' %></li>
+      <% end %>
     <% end %>
-  <% end %></ul>
+  </ul>
 </div>
 
 

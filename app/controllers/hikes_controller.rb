@@ -38,7 +38,7 @@ class HikesController < ApplicationController
     @comment = Comment.new(:hike => @hike)
     respond_to do |f| 
       f.html { render :show }
-      f.json { render json: @hike, status: 200 }
+      f.json { render json: @hike }
     end
   end
 
