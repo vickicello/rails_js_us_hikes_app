@@ -76,36 +76,27 @@ $('a.show_user_hikes').on('click', function(e){
 
 //render show page/one thing - not working
 //show more hike details on hike show page
-$(function(){
+
 	$('a.show_hike_details').on('click', function(e){
 		e.preventDefault();
 		$.ajax({
 			url: this.href,
 			type: "GET",
-		}).success(function(response){
-			$("div.show_hike_details ul").html(response)
-		}).error(function(ifNeeded){
-			alert("Error!");
-		});	
+			dataType: "json",
+			success: function(data){
+				//clear ul html:
+				const $ul = $("div.hike_details ul");
+				$ul.html("") //emptied ul
+				debugger;
+				for data((hike)=>{
+					let newHikeWithDetails = new Hike(hike)
+					let newHikeWithDetailsHTML = newHikeWithDetails.showHikeDetails()
+					$ul.append(newHikeWithDetailsHTML)
+				});
+			};
+	
+		});
 	});
-});
-
-	    	//not working
-// 			dataType: "json",
-// 			success: function(data){
-// 				//clear ul html:
-// 				const $ul = $("div.hike_details ul");
-// 				$ul.html("") //emptied ul
-// 				debugger;
-// 				data.map((hike, index)=>{
-// 					let newHikeWithDetails = new Hike(hike)
-// 					let newHikeWithDetailsHTML = newHikeWithDetails.showHikeDetails()
-// 					$ul.append(newHikeWithDetailsHTML)
-// 				})
-// 			}
-// 		});
-// 	});
-// });
 
 class Comment {
 	constructor(commentData){
