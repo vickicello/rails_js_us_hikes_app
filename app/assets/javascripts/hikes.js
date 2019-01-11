@@ -1,25 +1,25 @@
 $(document).ready(function(){
 	alert("users.js loaded!");
 
-class Hike {
-	constructor(hikeData){
-		this.name = hikeData.name
-		this.description = hikeData.description
-		this.state = hikeData.state
-		this.completed = hikeData.completed
-		this.id = hikeData.id
-		this.userId = hikeData.user_id
+	class Hike {
+		constructor(hikeData){
+			this.name = hikeData.name
+			this.description = hikeData.description
+			this.state = hikeData.state
+			this.completed = hikeData.completed
+			this.id = hikeData.id
+			this.userId = hikeData.user_id
+		}
 	}
-}
 
 //HTML prototype for formatting and listing user's hikes:
-Hike.prototype.formatHike = function() {
-  return `<li><h4><a href="/hikes/${this.id}">${this.name}</a></h4></li>`
-}
+	Hike.prototype.formatHike = function() {
+		return `<li><h4><a href="/hikes/${this.id}">${this.name}</a></h4></li>`
+	}
 
-Hike.prototype.showHikeDetails = function() {
-  return `<li>${this.description}<br>${this.state}<br></li>`
-}
+	Hike.prototype.showHikeDetails = function() {
+		return `<li>${this.description}<br>${this.state}<br></li>`
+	}
 
 // request via HTML - keep!
 //  $('a.show_user_hikes').on('click', function(e){
@@ -55,49 +55,59 @@ Hike.prototype.showHikeDetails = function() {
 
 //render 'list of things' using function on the prototype = finished product!!!
 //show user's hikes on the user show page
-$('a.show_user_hikes').on('click', function(e){
-	$.ajax({
-    url: this.href,
-    type: "GET",
-		dataType: "json",
-	  success: function(data){
-			//clear ol html:
-	   	const $ol = $("div.list_user_hikes ol");
-			$ol.html("") //emptied ol
-			data.forEach((hike, index)=>{
-				let newHike = new Hike(hike)
-				let newHikeHTML = newHike.formatHike()
-				$ol.append(newHikeHTML)
-			})
-		}
+	$('a.show_user_hikes').on('click', function(e){
+		$.ajax({
+			url: this.href,
+			type: "GET",
+			dataType: "json",
+			success: function(data){
+				//clear ol html:
+				const $ol = $("div.list_user_hikes ol");
+				$ol.html("") //emptied ol
+				data.forEach((hike, index)=>{
+					let newHike = new Hike(hike)
+					let newHikeHTML = newHike.formatHike()
+					$ol.append(newHikeHTML)
+				})
+			}
+		});
+		e.preventDefault();
 	});
-	e.preventDefault();
-});
 
 //render show page/one thing - not working
 //show more hike details on hike show page
-
+//not working
 	$('a.show_hike_details').on('click', function(e){
 		e.preventDefault();
 		$.ajax({
 			url: this.href,
 			type: "GET",
 			dataType: "json",
-			success: function(data){
-				//clear ul html:
-				const $ul = $("div.hike_details ul");
-				$ul.html("") //emptied ul
-				debugger;
-				for data((hike)=>{
-					let newHikeWithDetails = new Hike(hike)
-					let newHikeWithDetailsHTML = newHikeWithDetails.showHikeDetails()
-					$ul.append(newHikeWithDetailsHTML)
-				});
-			};
-	
-		});
-	});
+			success: hikeDetails(data)
+		});	
+		
+	function hikeDetails(data) {
+  const theHikeDetails = data
+  let hikeDetailsHTML = ``
 
+  for (i = 0; i < theHikeDetails.length; i++) {
+    const hikeDetails = new Hike(theHikeDetails[i])
+    hikeDetailsHTML += hikeDetails.showHikeDetails()
+  }
+
+  let $thisUl = $("div.hike_details ul")
+  $thisUl.html(`${hikeDetailsHTML}`)
+  // $('div#show-user-beers div#add-beer-form').html(`<button id="add-beer">Add Beer</button>`)
+	}
+});
+
+//this didn't work
+	// for data((hike)=>{
+	// 	let newHikeWithDetails = new Hike(hike)
+	// 	let newHikeWithDetailsHTML = newHikeWithDetails.showHikeDetails()
+	// 	$ul.append(newHikeWithDetailsHTML)
+	// });
+	
 class Comment {
 	constructor(commentData){
 		this.id = commentData.id
