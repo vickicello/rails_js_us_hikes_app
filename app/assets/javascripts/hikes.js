@@ -1,6 +1,5 @@
 $(document).ready(function(){
-	alert("users.js loaded!");
-
+	//alert("users.js loaded!");
 	class Hike {
 		constructor(hikeData){
 			this.name = hikeData.name
@@ -12,49 +11,18 @@ $(document).ready(function(){
 		}
 	}
 
-//HTML prototype for formatting and listing user's hikes:
+//HTML prototype for formatting and listing user's hikes
 	Hike.prototype.formatHike = function() {
 		return `<li><h4><a href="/hikes/${this.id}">${this.name}</a></h4></li>`
 	}
 
+//prototype for displaying Hike details
 	Hike.prototype.showHikeDetails = function() {
 		return `<li>${this.description}<br>${this.state}<br></li>`
 	}
 
-// request via HTML - keep!
-//  $('a.show_user_hikes').on('click', function(e){
-// 	$.ajax({
-// 		method: "GET",
-// 		url: this.href,
-// 	}).success(function(response){
-// 		$("div.list_user_hikes").html(response)
-// 	}).error(function(ifNeeded){
-// 		alert("Error!");
-// 	})
-// 	e.preventDefault();
-// })
-
-//request via JSON without prototype = keep !!!
-// $('a.show_user_hikes').on('click', function(e){
-// 	$.ajax({
-//     url: this.href,
-//     type: "GET",
-//     dataType: "json",
-// 	  success: function(data){
-// 			//clear ol html:
-// 	   	var $ol = $("div.list_user_hikes ol");
-//     	$ol.html("") //emptied ol
-// 	   	//iterate over each hike with JSON:
-// 			data.forEach(function(hike){
-// 				$ol.append('<li>' + hike.name + ' - ' + hike.state + ' - ' + hike.description + '</li>');
-// 			});
-// 		}
-// 	});
-// 	e.preventDefault();
-// });
-
-//render 'list of things' using function on the prototype = finished product!!!
-//show user's hikes on the user show page
+//render 'list of things' using function on the prototype 
+//show a list of a user's hikes on the user show page
 	$('a.show_user_hikes').on('click', function(e){
 		$.ajax({
 			url: this.href,
@@ -76,7 +44,6 @@ $(document).ready(function(){
 
 //render show page/one thing - not working
 //show more hike details on hike show page
-//not working
 	$('a.show_hike_details').on('click', function(e){
 		e.preventDefault();
 		$.ajax({
@@ -97,7 +64,6 @@ $(document).ready(function(){
 
   let $thisUl = $("div.hike_details ul")
   $thisUl.html(`${hikeDetailsHTML}`)
-  // $('div#show-user-beers div#add-beer-form').html(`<button id="add-beer">Add Beer</button>`)
 	}
 });
 
@@ -150,8 +116,7 @@ class Comment {
 // 			}).error(function(ifNeeded){
 // 				alert("eeeee!")
 // 			})
-// 		});
-	
+// 		});	
 // 	e.preventDefault();
 // });
 
@@ -169,12 +134,11 @@ class Comment {
 		 data: $(this).serialize()
 		}).success(function(response){
 			$("#comment_content").val("");
-			var $ul = $("div.fancy_hike_comments ul")
-			$ul.append(response);
+			const $comment_ul = $("div.fancy_hike_comments ul")
+			$comment_ul.append(response);
 		//  }).error(function(ifNeeded){
 		// 		alert("eeeee!")
 		});
 	  e.preventDefault();
   });
-
 });
