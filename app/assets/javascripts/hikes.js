@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 //HTML prototype for formatting and listing user's hikes
 	Hike.prototype.formatHike = function() {
-		return `<li><h4><a href="/hikes/${this.id}">${this.name}</a></h4></li>`
+		return `<li><h4><a class='show_hike_details' href="/hikes/${this.id}">${this.name}</a></h4></li>`
 	}
 
 //prototype for displaying Hike details
@@ -44,35 +44,27 @@ $(document).ready(function(){
 
 //render show page/one thing - not working
 //show more hike details on hike show page
-	$('a.show_hike_details').on('click', function(e){
-		e.preventDefault();
+	$('a.show_hike_details').on('click', function(event){
+		// event.stopPropagation();
+		event.preventDefault();
+		debugger;
 		$.ajax({
-			url: this.href,
+			url: event.delegateTarget.href,
 			type: "GET",
 			dataType: "json",
-			success: hikeDetails(data)
+			success: function(response){
+				//clear ul html:
+				const $details_ul = $("div.hike_details ul");
+				$details_ul.html("") //emptied ul
+				
+				response.forEach((hike, index)=>{
+					let newHikeDetails = new Hike(hike)
+					let newHikeDetailsHTML = newHikeDetails.showHikeDetails()
+					$details_ul.append(newHikeDetailsHTML)
+				})
+			}
 		});	
-		
-	function hikeDetails(data) {
-  const theHikeDetails = data
-  let hikeDetailsHTML = ``
-
-  for (i = 0; i < theHikeDetails.length; i++) {
-    const hikeDetails = new Hike(theHikeDetails[i])
-    hikeDetailsHTML += hikeDetails.showHikeDetails()
-  }
-
-  let $thisUl = $("div.hike_details ul")
-  $thisUl.html(`${hikeDetailsHTML}`)
-	}
 });
-
-//this didn't work
-	// for data((hike)=>{
-	// 	let newHikeWithDetails = new Hike(hike)
-	// 	let newHikeWithDetailsHTML = newHikeWithDetails.showHikeDetails()
-	// 	$ul.append(newHikeWithDetailsHTML)
-	// });
 	
 class Comment {
 	constructor(commentData){

@@ -1,12 +1,8 @@
 <div id="show-hike">
   <h1>Hike Info:</h1><br>
-  <h2 class="hikeName"><%= @hike.name %></h2>
-  <%= link_to "Click here to see hike details", hike_path(@hike), class: "show_hike_details" %>
+  <h2><%= @hike.name %></h2>
+  <p><%= @hike.state %> - <%= @hike.description %></p>
   <br>
-</div>
-
- <div class="hike_details">
-  <ul></ul>
 </div>
 
 <%= link_to "Click here to see comments", hike_comments_path(@hike), class: "load_comments" %>
