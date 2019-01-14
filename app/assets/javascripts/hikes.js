@@ -18,53 +18,50 @@ $(document).ready(function(){
 
 //prototype for displaying Hike details
 	Hike.prototype.showHikeDetails = function() {
-		return `<li>${this.description}<br>${this.state}<br></li>`
+		return `<li>${this.description} - ${this.state}<br></li>`
 	}
 
 //render 'list of things' using function on the prototype 
 //show a list of a user's hikes on the user show page
-	$('a.show_user_hikes').on('click', function(e){
+
+	$('a.show_user_hikes').on('click', function(event){
 		$.ajax({
 			url: this.href,
-			type: "GET",
+			method: "GET",
 			dataType: "json",
-			success: function(data){
-				//clear ol html:
-				const $ol = $("div.list_user_hikes ol");
-				$ol.html("") //emptied ol
-				data.forEach((hike, index)=>{
-					let newHike = new Hike(hike)
-					let newHikeHTML = newHike.formatHike()
-					$ol.append(newHikeHTML)
+			success: function(response){
+				response.forEach(item =>{
+					let newHike = new Hike(item)
+					$('div.list_user_hikes ol').append(newHike.formatHike())
 				})
+				listenForShowDetailsClick();
 			}
 		});
-		e.preventDefault();
+		event.preventDefault();
 	});
 
 //render show page/one thing - not working
 //show more hike details on hike show page
-	$('a.show_hike_details').on('click', function(event){
-		// event.stopPropagation();
-		event.preventDefault();
+function listenForShowDetailsClick(){
+	$('li h4 a').on('click', function(event){
+		alert("you clicked me!")
 		debugger;
+		event.preventDefault();
 		$.ajax({
-			url: event.delegateTarget.href,
-			type: "GET",
+			url: this.href,
+			method: "GET",
 			dataType: "json",
 			success: function(response){
-				//clear ul html:
-				const $details_ul = $("div.hike_details ul");
-				$details_ul.html("") //emptied ul
-				
-				response.forEach((hike, index)=>{
-					let newHikeDetails = new Hike(hike)
-					let newHikeDetailsHTML = newHikeDetails.showHikeDetails()
-					$details_ul.append(newHikeDetailsHTML)
-				})
+				// //clear ul html:
+				// const $details_ul = $("div.hike_details ul");
+				// $details_ul.html("") //emptied ul
+				let hike = new Hike(response);
+				let html = hike.showHikeDetails();
+				$('div.hike_details ul').html(html)
 			}
 		});	
-});
+	});
+}
 	
 class Comment {
 	constructor(commentData){
