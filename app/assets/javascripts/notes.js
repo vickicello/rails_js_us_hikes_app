@@ -32,3 +32,24 @@
 // 	e.preventDefault();
 // });
 
+//this is (currently not) working to show comments via AJAX when you click the show comments button - keep!!!!
+// $("a.load_comments").on("click", function(e){
+// 	$.ajax({
+// 		url: this.href,
+//     type: "GET",
+//     dataType: "json",
+// 	}).success(function(data){
+// 		debugger;
+// 			//clear ul html:
+// 			const $list_comments_ul = $("div.hike_comments");
+// 			$list_comments_ul.html("")
+// 	   	//iterate over each hike with JSON:
+// 			data.forEach(function(comment){
+// 				$list_comments_ul.append('<li>' + comment.content + ' - by : ' + comment.commentor.username + '</li>');
+// 			}).error(function(ifNeeded){
+// 				alert("Error!")
+// 			})
+// 		});	
+// 	e.preventDefault();
+// });
+

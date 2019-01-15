@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	//alert("users.js loaded!");
 	class Hike {
 		constructor(hikeData){
 			this.name = hikeData.name
@@ -23,7 +22,6 @@ $(document).ready(function(){
 
 //render 'list of things' using function on the prototype 
 //show a list of a user's hikes on the user show page
-
 	$('a.show_user_hikes').on('click', function(event){
 		$.ajax({
 			url: this.href,
@@ -40,8 +38,8 @@ $(document).ready(function(){
 		event.preventDefault();
 	});
 
-//render show page/one thing - not working
-//show more hike details on hike show page
+//render show page/'one thing'
+//show more hike details on user show page
 function listenForShowDetailsClick(){
 	$('li h4 a').on('click', function(event){
 		alert("you clicked me!")
@@ -80,6 +78,7 @@ Comment.prototype.formatComment = function() {
 	return `<li>${this.commentBody}<br>${this.commentorUsername}<br></li>`
 }
 
+	//render comments on the hike using AJAX - show 'has many' relationship
 	$("a.load_comments").on("click", function(e){
 		$.ajax({
 			url: this.href,
@@ -100,42 +99,6 @@ Comment.prototype.formatComment = function() {
 		e.preventDefault();
 	});
 
-//Get comment data via AJAX
-// $("a.load_comments").on("click", function(e){
-// 	$.get(this.href).success(function(comments){
-// 		var $ul = $("div.hike_comments");
-// 		$ul.html("")
-// 		comments.forEach(function(comment){
-// 			const oneComment = new Comment(comment);
-// 			const commentHTML = oneComment.formatComment();
-// 			$ul.append(commentHTML);
-// 		})
-// 	})
-// 	e.preventDefault();
-// });
-
-//this is (currently not) working to show comments via AJAX when you click the show comments button - keep!!!!
-// $("a.load_comments").on("click", function(e){
-// 	$.ajax({
-// 		url: this.href,
-//     type: "GET",
-//     dataType: "json",
-// 	}).success(function(data){
-// 		debugger;
-// 			//clear ul html:
-// 			const $list_comments_ul = $("div.hike_comments");
-// 			$list_comments_ul.html("")
-// 	   	//iterate over each hike with JSON:
-// 			data.forEach(function(comment){
-// 				$list_comments_ul.append('<li>' + comment.content + ' - by : ' + comment.commentor.username + '</li>');
-// 			}).error(function(ifNeeded){
-// 				alert("Error!")
-// 			})
-// 		});	
-// 	e.preventDefault();
-// });
-
-
 //submit comment form using AJAX
  $(".new_comment").on("submit", function(e){
 	 $.ajax({
@@ -146,8 +109,6 @@ Comment.prototype.formatComment = function() {
 			$("#comment_content").val("");
 			const $comment_ul = $("div.fancy_hike_comments ul")
 			$comment_ul.append(response);
-		//  }).error(function(ifNeeded){
-		// 		alert("eeeee!")
 		});
 	  e.preventDefault();
   });
