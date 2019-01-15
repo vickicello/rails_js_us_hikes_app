@@ -42,8 +42,6 @@ $(document).ready(function(){
 //show more hike details on user show page
 function listenForShowDetailsClick(){
 	$('li h4 a').on('click', function(event){
-		alert("you clicked me!")
-		debugger;
 		event.preventDefault();
 		$.ajax({
 			url: this.href,

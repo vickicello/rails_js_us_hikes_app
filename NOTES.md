@@ -5,6 +5,7 @@ https://github.com/vickicello/rails_js_us_hikes_app
 0.25) Maybe restructure JS file - SOC - hikes vs comments
 0.5) Show div for if no comments exist - and should I clear the ol/ul?
 0.75) figure out bootstrap load problem
+1.0) troubleshoot FB user show page
 
 -----------------------------------------
 ##Rails + JS Project
