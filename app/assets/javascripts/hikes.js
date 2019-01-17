@@ -21,19 +21,27 @@ $(document).ready(function(){
 	}
 
 
-$('a.alphabetized').on('click', function(e){
-	e.preventDefault();
-	$.ajax({
-		url: this.href,
-		method: 'GET',
-		dataType: 'json',
-		success: function(response){
-			console.log(response)
-			//create a function that operates on 'response' to alphabetize/sort the list of hikes and append to the DOM
-		}
-
+	$('a.alphabetized').on('click', function(e){
+		e.preventDefault();
+		$.ajax({
+			url: this.href,
+			method: 'GET',
+			dataType: 'json',
+			success: function(response){
+				console.log(response)
+				const responseData = [response];
+				debugger;
+					let sortedArray = responseData.sort((function(a, b){
+						return a.name - b.name;
+						console.log(sortedArray)
+						})
+					)
+				//create a function that operates on 'response' to alphabetize/sort the list of hikes and append to the DOM
+				//it seems that I am sorting by hike id though, not name, have to drill in more?
+			}
+		})
 	})
-})
+
 //render 'list of things' using function on the prototype 
 //show a list of a user's hikes on the user show page
 	$('a.show_user_hikes').on('click', function(event){
