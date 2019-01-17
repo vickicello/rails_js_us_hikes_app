@@ -4,8 +4,11 @@
   <p><%= @hike.state %> - <%= @hike.description %></p>
   <br>
 </div>
-
-<%= link_to "Click here to see comments", hike_comments_path(@hike), class: "load_comments" %>
+  <% if @hike.comments.any? %>
+    <%= link_to "Click here to see comments", hike_comments_path(@hike), class: "load_comments" %>
+  <% else %>
+    <p>There are no comments to display for this hike.  Add a comment using the form below!</p>
+  <% end %>
 <div class="hike_comments">
   <ul><% if current_user.id == @comment.user_id %>
       <%= form_tag(hike_comment_path(@hike, @comment), method: "delete") do %>

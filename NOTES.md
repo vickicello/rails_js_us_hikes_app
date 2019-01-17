@@ -2,10 +2,8 @@
 Link to repo:
 https://github.com/vickicello/rails_js_us_hikes_app
 
-0.25) Maybe restructure JS file - SOC - hikes vs comments
-0.5) Show div for if no comments exist - and should I clear the ol/ul?
-0.75) figure out bootstrap load problem
-1.0) troubleshoot FB user show page
+0.0) figure out bootstrap load problem
+0.5) figure out a way to hide the 'there are no comments' p tag for comments once a comment is made using JS
 
 -----------------------------------------
 ##Rails + JS Project
@@ -21,7 +19,7 @@ https://github.com/vickicello/rails_js_us_hikes_app
   c) use Active Model Serializer
   d) hikes/:id
   e) hikes#show -->
-  f) create <div> that will display if no comments exist
+  <!-- f) create <div> that will display if no comments exist -->
 
 <!-- 3) Hike Show Page: render comments form (my has_many through relationship)
   a) JSON through JS (or do through partial)
@@ -49,11 +47,7 @@ https://github.com/vickicello/rails_js_us_hikes_app
 ------------------------------------------
 <!-- 6) 30 mins working on project -->
 
-7) blog post
 
-8) 5 min recorded walkthrough
-
-9) Debug and submit!
 -------------------------------------------
 ##Log/end of sprint notes:
 
