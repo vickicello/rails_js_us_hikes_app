@@ -17,3 +17,5 @@
   <% else %>   
     <p>You haven't created any hikes yet!  Click <%= link_to "here", new_user_hike_path(@user) %> to create a new hike!</p>
   <% end %>
+
+  <%= link_to "Click here to see an alphabetized list of hikes", user_path(@user), class: 'alphabetized'%>

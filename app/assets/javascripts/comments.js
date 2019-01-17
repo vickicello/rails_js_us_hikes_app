@@ -27,7 +27,6 @@ Comment.prototype.formatComment = function() {
 				//clear ul html:
 				const $list_comments_ul = $("div.hike_comments ul");
 				$list_comments_ul.html("")
-				debugger;
 				data.forEach((comment, index)=>{
 					let oneComment = new Comment(comment)
 					let oneCommentHTML = oneComment.formatComment()
@@ -35,6 +34,7 @@ Comment.prototype.formatComment = function() {
 				})
 			}
 		});
+		console.log("is this working?")
 		e.preventDefault();
 	});
 

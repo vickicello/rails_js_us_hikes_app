@@ -20,6 +20,20 @@ $(document).ready(function(){
 		return `<li>${this.description} - ${this.state}<br></li>`
 	}
 
+
+$('a.alphabetized').on('click', function(e){
+	e.preventDefault();
+	$.ajax({
+		url: this.href,
+		method: 'GET',
+		dataType: 'json',
+		success: function(response){
+			console.log(response)
+			//create a function that operates on 'response' to alphabetize/sort the list of hikes and append to the DOM
+		}
+
+	})
+})
 //render 'list of things' using function on the prototype 
 //show a list of a user's hikes on the user show page
 	$('a.show_user_hikes').on('click', function(event){
