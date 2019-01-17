@@ -2,15 +2,18 @@
 
 <%= link_to "Create new hike", new_user_hike_path(@user) %><br><br>
 
-<h4>Click <%= link_to "here ", user_hikes_url(@user.id), class: 'show_user_hikes' %>to see <%= @user.username %>'s hikes!</h4>
-
-<div class="list_user_hikes">
-  <ol>
-  </ol>
-   <div class="hike_details">
-      <ul>
-      </ul>
-    </div>
-</div>
-<br>
-<h4>Click <%= link_to('here', '/hikes/recent') %> to see recently added hikes!</h4>
+  <% if @user.hikes.any? %>
+    <h4>Click <%= link_to "here ", user_hikes_url(@user.id), class: 'show_user_hikes' %>to see <%= @user.username %>'s hikes!</h4>
+      <div class="list_user_hikes">
+        <ol>
+        </ol>
+          <div class="hike_details">
+            <ul>
+            </ul>
+          </div>
+      </div>
+    <br>
+    <h4>Click <%= link_to('here', '/hikes/recent') %> to see recently added hikes!</h4>
+  <% else %>   
+    <p>You haven't created any hikes yet!  Click <%= link_to "here", new_user_hike_path(@user) %> to create a new hike!</p>
+  <% end %>
