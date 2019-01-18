@@ -28,14 +28,37 @@ $(document).ready(function(){
 			method: 'GET',
 			dataType: 'json',
 			success: function(response){
-				console.log(response)
-				const responseData = [response];
+				//console.log(response.hikes[0].name)
+				//'Big Sur'
+
+				let newData = (response.hikes);
+				//newData is an array of 6 objects
+				function alphabetize(property){
+					let sortOrder = 1;
+
+					if(property[0] === "-"){
+						sortOrder = -1
+						property = property.substr(1)
+					}
+
+					return function(a, b){
+						if(sortOrder == -1){
+							return b[property].localeCompare(a[property]);
+						} else {
+							return a[property].localeCompare(b[property])
+						}
+					}		
+				}
+				console.log(newData.sort(alphabetize("name")))
+				// for(let name in newData) {
+				// 	alert(name)
 				debugger;
-					let sortedArray = responseData.sort((function(a, b){
-						return a.name - b.name;
-						console.log(sortedArray)
-						})
-					)
+				// }
+
+					// let newData = Object.keys(responseData).map((function(key){
+					// 	return [Number(key), responseData[key]];
+					// 	})
+					// )
 				//create a function that operates on 'response' to alphabetize/sort the list of hikes and append to the DOM
 				//it seems that I am sorting by hike id though, not name, have to drill in more?
 			}
