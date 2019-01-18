@@ -20,7 +20,6 @@ $(document).ready(function(){
 		return `<li>${this.description} - ${this.state}<br></li>`
 	}
 
-
 	$('a.alphabetized').on('click', function(e){
 		e.preventDefault();
 		$.ajax({
@@ -28,11 +27,8 @@ $(document).ready(function(){
 			method: 'GET',
 			dataType: 'json',
 			success: function(response){
-				//console.log(response.hikes[0].name)
-				//'Big Sur'
-
 				let newData = (response.hikes);
-				//newData is an array of 6 objects
+
 				function alphabetize(property){
 					let sortOrder = 1;
 
@@ -49,18 +45,15 @@ $(document).ready(function(){
 						}
 					}		
 				}
-				console.log(newData.sort(alphabetize("name")))
-				// for(let name in newData) {
-				// 	alert(name)
-				debugger;
-				// }
+				// let result =  newData.sort(alphabetize("name")).filter(function(hike){
+				// 	return hike.name[0] === 'C'
+				// })
 
-					// let newData = Object.keys(responseData).map((function(key){
-					// 	return [Number(key), responseData[key]];
-					// 	})
-					// )
-				//create a function that operates on 'response' to alphabetize/sort the list of hikes and append to the DOM
-				//it seems that I am sorting by hike id though, not name, have to drill in more?
+	     	result.forEach(item =>{
+					let newHike = new Hike(item)
+					$('div.list_user_hikes ol').append(newHike.formatHike())
+				})
+			
 			}
 		})
 	})
