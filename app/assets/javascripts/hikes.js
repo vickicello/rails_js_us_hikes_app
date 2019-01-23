@@ -10,12 +10,12 @@ $(document).ready(function(){
 		}
 	}
 
-//HTML prototype for formatting and listing user's hikes
+// HTML prototype for formatting and listing user's hikes
 	Hike.prototype.formatHike = function() {
 		return `<li><h4><a class='show_hike_details' href="/hikes/${this.id}">${this.name}</a></h4></li>`
 	}
 
-//prototype for displaying Hike details
+// prototype for displaying Hike details
 	Hike.prototype.showHikeDetails = function() {
 		return `<li>${this.description} - ${this.state}<br></li>`
 	}
@@ -57,6 +57,13 @@ $(document).ready(function(){
 			}
 		})
 	})
+
+// space for working on JS Review:
+
+
+
+
+
 
 //render 'list of things' using function on the prototype 
 //show a list of a user's hikes on the user show page

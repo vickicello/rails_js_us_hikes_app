@@ -1,5 +1,5 @@
 class HikeSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :state, :completed, :user_id
+  attributes :id, :name, :description, :state, :completed, :user_id, :search
   
   belongs_to :user
   has_many :comments

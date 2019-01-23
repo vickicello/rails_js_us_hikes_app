@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy', as: 'logout'
   get '/auth/facebook/callback', to: 'sessions#create'
   get '/hikes/recent', to: 'hikes#recent'
-  map.search “search”, :controller => “search”
-  # get '/search', to: 'hikes#search'
 
   resources :users, only: [:new, :create, :show] do
     resources :hikes, only: [:index, :new, :create, :show, :update]

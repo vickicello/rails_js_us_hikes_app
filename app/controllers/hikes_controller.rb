@@ -12,6 +12,10 @@ class HikesController < ApplicationController
       f.html { render :index }
       f.json { render json: @hikes }
     end
+
+    if params[:state]
+      @hike = Hike.all
+    end
   end
 
   def recent
