@@ -65,11 +65,13 @@ $(".filter_by_state").on("click", function(e){
 	$.ajax({
 		type: "GET",
 		url: this.href, //the hikes index url from the form
-		data: $(this).serialize()
+		dataType: 'json',
 	 }).success(function(response){
+		 console.log(response.hikes);
+		 debugger;
 		 let allHikes = (response.hikes);
 		 let filteredData = allHikes.filter(function(hike){
-			 return hike.state === ["params entered by user"]
+			 return hike.state === ["CA"]
 		 })
 
 		 filteredData.forEach(item =>{

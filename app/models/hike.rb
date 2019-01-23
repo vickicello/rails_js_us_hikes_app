@@ -11,9 +11,9 @@ class Hike < ApplicationRecord
 
   # def self.search(search)
   #   if search
-  #     state = Hike.state.find_by(name: search)
+  #     state = Hike.state.find_by(params[:state])
   #     if state 
-  #       self.where(state_id: state)
+  #       self.where(state: state)
   #     else
   #       Hike.all
   #     end
