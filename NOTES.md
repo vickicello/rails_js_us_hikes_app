@@ -13,4 +13,4 @@ https://github.com/vickicello/rails_js_us_hikes_app
 3) filter the incoming JSON response according to the chosen state
 
 4) create new JS 'Hike' objects (using the contructor + prototype method)
-  a) append the filtered list ot hte DOM
+  a) append the filtered list to the DOM

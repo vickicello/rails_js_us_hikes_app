@@ -35,7 +35,7 @@
 <h4>Filter by state:</h4>
 <% form_tag(hikes_path, method: "get") do %>
   Enter state: <%= text_field_tag(:state, params[:state]) %>
-  <%= submit_tag "Search" %>
+  <%= submit_tag "Search", class: "filter_by_state" %>
 <% end %>
 
 <div class="by_state">

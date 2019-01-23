@@ -45,9 +45,10 @@ $(document).ready(function(){
 						}
 					}		
 				}
-				// let result =  newData.sort(alphabetize("name")).filter(function(hike){
-				// 	return hike.name[0] === 'C'
-				// })
+
+				let result =  newData.sort(alphabetize("name")).filter(function(hike){
+					return hike.name[0] === 'C'
+				})
 
 	     	result.forEach(item =>{
 					let newHike = new Hike(item)
@@ -59,6 +60,24 @@ $(document).ready(function(){
 	})
 
 // space for working on JS Review:
+$(".filter_by_state").on("click", function(e){
+	e.preventDefault();
+	$.ajax({
+		type: "GET",
+		url: this.href, //the hikes index url from the form
+		data: $(this).serialize()
+	 }).success(function(response){
+		 let allHikes = (response.hikes);
+		 let filteredData = allHikes.filter(function(hike){
+			 return hike.state === ["params entered by user"]
+		 })
+
+		 filteredData.forEach(item =>{
+			 let filteredHike = new Hike(item);
+			 $('div.by_state').append(filteredHike);
+		 });
+	 });
+});
 
 
 
