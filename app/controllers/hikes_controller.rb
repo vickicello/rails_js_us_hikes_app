@@ -8,13 +8,12 @@ class HikesController < ApplicationController
     else
       @hikes = Hike.all
     end
+    if params[:state]
+      @hike = Hike.all
+    end
     respond_to do |f| 
       f.html { render :index }
       f.json { render json: @hikes }
-    end
-
-    if params[:state]
-      @hike = Hike.all
     end
   end
 

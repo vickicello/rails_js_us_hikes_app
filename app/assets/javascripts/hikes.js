@@ -66,23 +66,23 @@ $(".filter_by_state").on("click", function(e){
 		type: "GET",
 		url: this.href, //the hikes index url from the form
 		dataType: 'json',
-	 }).success(function(response){
-		 console.log(response.hikes);
-		 debugger;
-		 let allHikes = (response.hikes);
-		 let filteredData = allHikes.filter(function(hike){
-			 return hike.state === ["CA"]
-		 })
+	 }).success(compareState);
+	})
 
-		 filteredData.forEach(item =>{
-			 let filteredHike = new Hike(item);
-			 $('div.by_state').append(filteredHike);
-		 });
-	 });
-});
+		function compareState(response){
+			let stateInput = $('#state').val(); //grab the user's selected state
+			let result = response.filter(function(hike){
+				return hike.state === stateInput;
+			});
 
-
-
+		// iterate over each instance of Hike that was filtered 
+		// create new JS models using the class constructor
+		// append to DOM
+	  result.forEach(item =>{
+			let filteredHike = new Hike(item);
+			$('div.by_state ul').append(filteredHike.formatHike());
+			});
+		}
 
 
 

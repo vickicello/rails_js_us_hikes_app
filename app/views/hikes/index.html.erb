@@ -33,11 +33,12 @@
   <br>
 
 <h4>Filter by state:</h4>
+<p>please use 2-letter abbreviation (ex: 'VT' for Vermont)</p>
 <%= form_tag(hikes_path, method: "get") do %>
   Enter state: <%= text_field_tag(:state, params[:state]) %>
   <%= submit_tag "Submit", class: "filter_by_state" %>
 <% end %>
-
+<br>
 <div class="by_state">
   <ul></ul>
 </div>
