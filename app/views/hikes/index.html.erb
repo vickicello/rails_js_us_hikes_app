@@ -11,7 +11,7 @@
           <%= link_to "Delete", hike, method: :delete, data: { confirm: "Are you sure you want to delete this hike?"} %>
         <% end %>
         </li>
-      <br />
+      <br>
       <% end %>
       </ul>
     <% else %>
@@ -31,12 +31,12 @@
     </ul>
   <% end %>
   <br>
-
-<h4>Filter by state:</h4>
-<p>please use 2-letter abbreviation (ex: 'VT' for Vermont)</p>
+<h4>Filter by State:</h4>
+<p>Please enter the 2-letter abbreviation (ex: VT for 'Vermont')</p>
+<br>
 <%= form_tag(hikes_path, method: "get") do %>
   Enter state: <%= text_field_tag(:state, params[:state]) %>
-  <%= submit_tag "Submit", class: "filter_by_state" %>
+  <%= submit_tag "Submit", class: 'filter_by_state' %>
 <% end %>
 <br>
 <div class="by_state">

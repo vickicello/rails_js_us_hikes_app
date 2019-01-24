@@ -60,29 +60,41 @@ $(document).ready(function(){
 	})
 
 // space for working on JS Review:
-$(".filter_by_state").on("click", function(e){
-	e.preventDefault();
-	$.ajax({
-		type: "GET",
-		url: this.href, //the hikes index url from the form
-		dataType: 'json',
-	 }).success(compareState);
-	})
 
-		function compareState(response){
-			let stateInput = $('#state').val(); //grab the user's selected state
-			let result = response.filter(function(hike){
-				return hike.state === stateInput;
-			});
 
-		// iterate over each instance of Hike that was filtered 
-		// create new JS models using the class constructor
-		// append to DOM
-	  result.forEach(item =>{
-			let filteredHike = new Hike(item);
-			$('div.by_state ul').append(filteredHike.formatHike());
-			});
-		}
+
+
+
+
+
+// $(".filter_by_state").on("click", function(e){
+// 	e.preventDefault();
+// 	$.ajax({
+// 		type: "GET",
+// 		url: this.href, //the hikes index url from the form
+// 		dataType: 'json',
+// 	 }).success(compareState);
+// 	})
+
+// 		function compareState(response){
+// 			let stateInput = $('#state').val(); //grab the user's selected state
+// 			let result = response.filter(function(hike){
+// 				return hike.state === stateInput;
+// 			});
+
+// 		// iterate over each instance of Hike that was filtered 
+// 		// create new JS models using the class constructor
+// 		// append to DOM
+// 	  result.forEach(item =>{
+// 			let filteredHike = new Hike(item);
+// 			$('div.by_state ul').append(filteredHike.formatHike());
+			
+// 					// if I want to clear ul html and add to existing ul:
+// 					// const $list_ul = $("ul.list-group");
+// 					// $list_ul.html("") //emptied ul
+// 					// $('ul.list-group').append(filteredHike.formatHike());
+// 			});
+// 		}
 
 
 
