@@ -36,7 +36,7 @@
 <br>
 <%= form_tag(hikes_path, method: "get") do %>
   Enter state: <%= text_field_tag(:state, params[:state]) %>
-  <%= submit_tag "Submit", class: 'filter_by_state' %>
+  <%= submit_tag "Submit", class: 'filter_by_state', 'data-url': '/hikes' %>
 <% end %>
 <br>
 <div class="by_state">
